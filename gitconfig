@@ -1,0 +1,10 @@
+[include]
+    path = .gitconfig-local
+[color]
+	status = auto
+	branch = auto
+[push]
+	default = simple
+[alias]
+	s = status
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
