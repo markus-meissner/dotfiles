@@ -5,5 +5,4 @@
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
 
-- shell: 
-    - [git update-submodules, Installing/updating submodules]
+- shell: []
