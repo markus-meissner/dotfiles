@@ -103,9 +103,10 @@ fi
 if [[ $USER == "root" ]]; then
   PS1="[$PR_RED%n$PR_NO_COLOR@$PR_BLUE%U%m%u$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR]%(!.#.$) "
 else
-  PS1="[$PR_BLUE%n$PR_NO_COLOR@$PR_BLUE%U%m%u$PR_NO_COLOR:$PR_NO_COLOR%2c$PR_NO_COLOR]%(!.#.$) "
+  PS1="[$PR_BLUE%n$PR_NO_COLOR@$PR_BLUE%U%m%u$PR_NO_COLOR:$PR_NO_COLOR%2c$PR_NO_COLOR]%(!.#.$) $PR_BLUE(%D{%y-%m-%d %H:%M})$PR_NO_COLOR
+$ "
 fi
-RPS1="$PR_BLUE(%D{%y-%m-%d %H:%M})$PR_NO_COLOR"
+#RPS1="$PR_BLUE(%D{%y-%m-%d %H:%M})$PR_NO_COLOR"
 #LANGUAGE=
 LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
@@ -148,7 +149,7 @@ alias -g 2wdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/2week_dro
 alias -g 48hdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/48h_dropbox/"
 
 # global alias will be expanded at any place in the command line
-alias -g pager=$PAGER
+alias -g less=$PAGER
 if [ $SSH_TTY ]; then
     alias -g edit=$EDITOR
 elif [ -d /Applications/TextWrangler.app ]; then
@@ -280,3 +281,5 @@ growl() { echo -e $'\e]9;'${1}'\007' ; return  ; }
 echo "zshrc $zshrcversionmm"
 
 TZ='Europe/Berlin'; export TZ
+
+source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
