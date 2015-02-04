@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# update if last update was older than x days
+
+DAYS="7"
+DOTFILES="${HOME}/.dotfiles/"
+SELFUPDATE_TIMESTAMP=".selfupdate-timestamp"
+
+# //TODO check internet availability
+if test ! `find ${DOTFILES} -name ${SELFUPDATE_TIMESTAMP} -mtime -${DAYS}`; then
+    echo "Updating .dotfiles..."
+    ${DOTFILES}install
+    touch ${DOTFILES}${SELFUPDATE_TIMESTAMP}
+fi

@@ -1,6 +1,4 @@
 ######################################################################
-zshrcversionmm='v38'
-######################################################################
 # 15-01-27, mm: Moved to .dotfiles, removed wget
 # 15-01-19, mm: Updated methods to find fetch, wget
 # 14-11-27, mm: Removed slash from some PATH entries
@@ -150,6 +148,7 @@ alias -g 48hdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/48h_drop
 
 # global alias will be expanded at any place in the command line
 alias -g less=$PAGER
+alias -g grep="grep --color"
 if [ $SSH_TTY ]; then
     alias -g edit=$EDITOR
 elif [ -d /Applications/TextWrangler.app ]; then
@@ -278,8 +277,14 @@ esac
 
 growl() { echo -e $'\e]9;'${1}'\007' ; return  ; }
 
-echo "zshrc $zshrcversionmm"
-
 TZ='Europe/Berlin'; export TZ
 
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if [[ $USER == "root" ]]; then
+    echo "No selfupdate as user root - call ~/.dotfiles/selfupdate manually if needed"
+else
+    ~/.dotfiles/selfupdate
+fi
+
+echo "Markus dotfiles v$(cd ~/.dotfiles; git log -n1 --pretty=format:"%ad" --date=short)"
