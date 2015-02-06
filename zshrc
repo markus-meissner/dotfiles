@@ -92,18 +92,22 @@ autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
    colors
 fi
-    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-   eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-   eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-   (( count = $count + 1 ))
-    done
-    PR_NO_COLOR="%{$terminfo[sgr0]%}"
+for color in YELLOW ORANGE RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+    eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+    eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+done
+PR_NO_COLOR="%{$terminfo[sgr0]%}"
+
 if [[ $USER == "root" ]]; then
-  PS1="[$PR_RED%n$PR_NO_COLOR@$PR_BLUE%U%m%u$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR]%(!.#.$) "
+    PS1_PREFIX="$PR_RED%n$PR_NO_COLOR@"
+elif [[ ( $USER != "meissner" ) && ( $USER != "mmeissner" ) ]]; then
+    PS1_PREFIX="$PR_BLUE%n$PR_NO_COLOR@"
 else
-  PS1="[$PR_BLUE%n$PR_NO_COLOR@$PR_BLUE%U%m%u$PR_NO_COLOR:$PR_NO_COLOR%2c$PR_NO_COLOR]%(!.#.$) $PR_BLUE(%D{%y-%m-%d %H:%M})$PR_NO_COLOR
-$ "
+    PS1_PREFIX=""
 fi
+PS1="$PS1_PREFIX$PR_LIGHT_GREEN%m$PR_NO_COLOR:$PR_BLUE%4c$PR_NO_COLOR - (%D{%y-%m-%d %H:%M})
+%(!.#.$) "
+
 #RPS1="$PR_BLUE(%D{%y-%m-%d %H:%M})$PR_NO_COLOR"
 #LANGUAGE=
 LC_ALL='en_US.UTF-8'
