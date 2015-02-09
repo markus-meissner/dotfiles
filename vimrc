@@ -1,5 +1,6 @@
 set paste
 set ruler
+set nu
 set tabstop=4 shiftwidth=4 expandtab
 set sm
 syntax on
