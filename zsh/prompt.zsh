@@ -35,7 +35,7 @@ elif [[ ( $USER != "meissner" ) && ( $USER != "mmeissner" ) ]]; then
 else
     PS1_PREFIX=""
 fi
-source ~/Desktop/zsh-git-prompt/zshrc.sh
+
 PS1='%{$fg[green]%}%m%{$reset_color%}:%{$fg[blue]%}%4c%{$reset_color%}$(git_custom_status)
 %(!.#.$) '
 RPS1="%{$(echotc UP 1)%}(%D{%Y-%m-%d %H:%M})%{$(echotc DO 1)%}"
