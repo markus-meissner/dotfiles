@@ -76,15 +76,15 @@ git_custom_status() {
 }
 
 if [[ $USER == "root" ]]; then
-    PS1_PREFIX="$PR_RED%n$PR_NO_COLOR@"
+    PS1_PREFIX="%{$fg[red]%}%n%{$reset_color%}@"
 elif [[ ( $USER != "meissner" ) && ( $USER != "mmeissner" ) ]]; then
-    PS1_PREFIX="$PR_BLUE%n$PR_NO_COLOR@"
+    PS1_PREFIX="%{$fg[blue]%}%n%{$reset_color%}@"
 else
     PS1_PREFIX=""
 fi
 
-PS1='%{$fg[green]%}%m%{$reset_color%}:%{$fg[blue]%}%4c%{$reset_color%}$(git_custom_status)
+PS1='[${PS1_PREFIX}%{$fg[blue]%}%m%{$reset_color%}:%{$fg[blue]%}%4c%{$reset_color%}]$(git_custom_status)
 %(!.#.$) '
-RPS1="%{$(echotc UP 1)%}(%D{%Y-%m-%d %H:%M})%{$(echotc DO 1)%}"
+RPS1="%{$(echotc UP 1)%}(%D{%Y-%m-%d %H:%M:%S})%{$(echotc DO 1)%}"
 #RPS1="$PR_BLUE(%D{%y-%m-%d %H:%M})$PR_NO_COLOR"
 # %{$fg_bold[green]%}

@@ -1,6 +1,8 @@
 set paste
 set ruler
-set nu
+" displaying line numbers is great but leads to problems (e.g. line numbers) 
+" when doing copy/paste via mouse / terminal
+"set nu
 set tabstop=4 shiftwidth=4 expandtab
 set sm
 syntax on
