@@ -131,6 +131,7 @@ alias ifconfig='/sbin/ifconfig'
 alias route='/sbin/route'
 alias -g 2wdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/2week_dropbox/"
 alias -g 48hdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/48h_dropbox/"
+alias brew="sudo -u adm brew"
 
 # global alias will be expanded at any place in the command line
 alias -g less=$PAGER
