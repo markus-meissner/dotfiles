@@ -77,7 +77,11 @@ unsetopt bgnice autoparamslash
 zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
-zmodload -ap zsh/mapfile mapfile
+# http://stackoverflow.com/a/3486417
+# The zsh mapfile module creates a pseudo-variable which maps filenames
+# to their contents, and is only needed if you have scripts that 
+# actually use $mapfile.
+# zmodload -ap zsh/mapfile mapfile
 
 
 PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH"
