@@ -8,7 +8,7 @@ set sm
 syntax on
 
 " set background=light
-" set background=dark
+set background=dark
 colorscheme solarized
 
 au BufRead,BufNewFile /etc/puppet/* set tabstop=2
