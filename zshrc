@@ -123,7 +123,11 @@ alias testmail='echo|mail -s "Test von $HOSTNAME um `date`" '
 if [[ ${OSTYPE} = darwin* ]]; then
 	alias tm='sudo tail -F /var/log/system.log /var/log/secure.log'
 elif [[ ${OSTYPE} = freebsd* ]]; then
-    alias tm='sudo tail -F tail -F /var/log/auth.log /var/log/cron /var/log/security /var/log/messages'
+    alias tm='sudo tail -F /var/log/auth.log /var/log/cron /var/log/security /var/log/messages'
+    alias tml='sudo tail -F /var/log/maillog'
+elif [[ ${VENDOR} = "redhat" ]]; then
+    # Red Hat Enterprise Linux Server release 6.6 (Santiago)
+    alias tm='sudo tail -F /var/log/secure /var/log/cron /var/log/messages'
     alias tml='sudo tail -F /var/log/maillog'
 else 
     alias tm='sudo tail -F /var/log/auth.log /var/log/syslog'
