@@ -3,7 +3,8 @@ set ruler
 " displaying line numbers is great but leads to problems (e.g. line numbers) 
 " when doing copy/paste via mouse / terminal
 "set nu
-set tabstop=4 shiftwidth=4 expandtab
+" http://vim.wikia.com/wiki/Indenting_source_code
+set shiftwidth=4 softtabstop=4
 set sm
 syntax on
 
