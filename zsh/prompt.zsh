@@ -11,7 +11,7 @@ update_current_git_vars() {
     unset __CURRENT_GIT_BRANCH_STATUS
     unset __CURRENT_GIT_BRANCH_IS_DIRTY
 
-    local st="$(git status 2>/dev/null)"
+    local st="$(git status 2>/dev/null|head)"
     if [[ -n "$st" ]]; then
         local -a arr
         arr=(${(f)st})
