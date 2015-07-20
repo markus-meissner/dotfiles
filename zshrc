@@ -277,9 +277,15 @@ TZ='Europe/Berlin'; export TZ
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 if [[ $USER == "root" ]]; then
-    echo "No selfupdate as user root - call ~/.dotfiles/selfupdate manually if needed"
+    echo "No selfupdate as user root, call ~/.dotfiles/selfupdate manually if needed"
+elif [[ -f ~/.dotfiles/.selfupdate-disabled ]]; then
+    echo "Selfupdate has been disabled, call ~/.dotfiles/selfupdate manually if needed"
 else
     ~/.dotfiles/selfupdate
 fi
 
-echo "Markus dotfiles v$(cd ~/.dotfiles; git log -n1 --pretty=format:"%ad" --date=short)"
+if which git 1>/dev/null; then
+    echo "Markus dotfiles v$(cd ~/.dotfiles; git log -n1 --pretty=format:"%ad" --date=short)"
+else
+    echo "Markus dotfiles - no git, no version"
+fi
