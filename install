@@ -9,9 +9,14 @@ DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
-echo "[dotfiles] Fetching new files from git..."
-git fetch
-git merge origin/master
-git submodule init
+
+if which git 1>/dev/null; then
+    echo "[dotfiles] Fetching new files from git..."
+    git fetch
+    git merge origin/master
+    git submodule init
+else
+    echo "[dotfiles] no git - no new files from master..."
+fi
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
