@@ -169,7 +169,7 @@ bindkey "^?"	backward-delete-char
 #chpwd
 
 autoload -U compinit
-compinit
+compinit -u
 # history-incremental-pattern-search-backward was added in 4.3.9 which is not available in lenny-backports
 # use the new *-pattern-* widgets for incremental history search
 if is439 ; then
