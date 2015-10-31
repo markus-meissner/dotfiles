@@ -8,8 +8,14 @@ set shiftwidth=4 softtabstop=4
 set sm
 syntax on
 
-" set background=light
-set background=dark
+" Let vim decide which background to use by setting / using COLORFGBG
+" Use dark as default if not set
+" #16824: vim: set background={light,dark} automatically based on terminal settings
+if empty($COLORFGBG)
+    " set background=light
+    set background=dark
+endif
+
 colorscheme solarized
 
 au BufRead,BufNewFile /etc/puppet/* set tabstop=2
