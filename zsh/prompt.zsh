@@ -11,13 +11,18 @@ update_current_git_vars() {
     unset __CURRENT_GIT_BRANCH_STATUS
     unset __CURRENT_GIT_BRANCH_IS_DIRTY
 
-    local st="$(git status 2>/dev/null|head)"
+    # Terminate git on large repositories
+    local st="$(timeout 2 git status 2>/dev/null|head; echo $pipestatus[1])"
     if [[ -n "$st" ]]; then
         local -a arr
-        arr=(${(f)st})
+	arr=(${(f)st})
 
         if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
             __CURRENT_GIT_BRANCH='no-branch'
+	elif [[ $arr[1] == '128' ]]; then
+	    # nothing to do - we are not in a git repo
+	elif [[ $arr[1] == '124' ]]; then
+	    __CURRENT_GIT_BRANCH='git-timed-out'
         else
             __CURRENT_GIT_BRANCH="${arr[1][(w)4]}";
         fi
