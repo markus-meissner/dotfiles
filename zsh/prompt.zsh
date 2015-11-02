@@ -11,11 +11,15 @@ update_current_git_vars() {
     unset __CURRENT_GIT_BRANCH_STATUS
     unset __CURRENT_GIT_BRANCH_IS_DIRTY
 
-    # Terminate git on large repositories
-    local st="$(timeout 2 git status 2>/dev/null|head; echo $pipestatus[1])"
+    if which timeout > /dev/null; then
+        # Terminate git on large repositories
+	local st="$(timeout 2 git status 2>/dev/null|head; echo $pipestatus[1])"
+    else
+        local st="$(git status 2>/dev/null|head; echo $pipestatus[1])"
+    fi
     if [[ -n "$st" ]]; then
         local -a arr
-	arr=(${(f)st})
+        arr=(${(f)st})
 
         if [[ $arr[1] =~ 'Not currently on any branch.' ]]; then
             __CURRENT_GIT_BRANCH='no-branch'
