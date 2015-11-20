@@ -23,3 +23,13 @@ au BufRead,BufNewFile /etc/puppet/* set tabstop=2
 if filereadable(glob("~/.vimrc.local")) 
     source ~/.vimrc.local
 endif
+
+" set mouse=a
+" Try to show at least three lines and two columns of context when scrolling
+set scrolloff=3
+set sidescrolloff=2
+
+" http://stackoverflow.com/questions/4390011/
+set laststatus=2
+set statusline=\ %F%m%r%h\ [%{&ff}]\ %y%=[col:%v,\ line:%l/%L\ (%p%%)]
+

@@ -25,6 +25,8 @@ update_current_git_vars() {
             __CURRENT_GIT_BRANCH='no-branch'
 	elif [[ $arr[1] == '128' ]]; then
 	    # nothing to do - we are not in a git repo
+	elif [[ $arr[1] == '127' ]]; then
+	    # nothing to do - we are not in a git repo
 	elif [[ $arr[1] == '124' ]]; then
 	    __CURRENT_GIT_BRANCH='git-timed-out'
         else
