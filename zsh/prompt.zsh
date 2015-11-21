@@ -94,7 +94,10 @@ else
     PS1_PREFIX=""
 fi
 
-PS1='[${PS1_PREFIX}%{$fg[blue]%}%m%{$reset_color%}:%{$fg[blue]%}%4c%{$reset_color%}]$(git_custom_status)
+# http://aperiodic.net/phil/prompt/
+# echo "ps=$promptSize, termwidth=$COLUMNS"
+
+PS1='[${PS1_PREFIX}%{$fg[blue]%}%m%{$reset_color%}:%{$fg[blue]%}%8c%{$reset_color%}]$(git_custom_status)
 %(!.#.$) '
 RPS1="%{$(echotc UP 1)%}(%D{%Y-%m-%d %H:%M:%S})%{$(echotc DO 1)%}"
 #RPS1="$PR_BLUE(%D{%y-%m-%d %H:%M})$PR_NO_COLOR"
