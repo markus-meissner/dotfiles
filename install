@@ -12,9 +12,12 @@ cd "${BASEDIR}"
 
 if which git 1>/dev/null; then
     echo "[dotfiles] Fetching new files from git..."
-    git fetch
-    git merge origin/master
-    git submodule init
+    if git fetch; then
+        git merge origin/master
+        git submodule init
+    else
+        echo "[dotfiles] Fetching failed - no new files from master..."
+    fi
 else
     echo "[dotfiles] no git - no new files from master..."
 fi
