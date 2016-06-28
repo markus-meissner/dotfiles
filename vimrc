@@ -5,6 +5,10 @@ set ruler
 "set nu
 " http://vim.wikia.com/wiki/Indenting_source_code
 set shiftwidth=4 softtabstop=4
+" To insert space characters whenever the tab key is pressed:
+set expandtab
+" Hint: Convert existing files according to your new settings:
+" :retab
 set sm
 syntax on
 
