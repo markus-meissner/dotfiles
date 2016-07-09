@@ -1,8 +1,7 @@
 [include]
     path = .gitconfig-local
 [color]
-	status = auto
-	branch = auto
+	ui = auto
 [alias]
 	s = status
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
