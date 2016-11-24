@@ -1,4 +1,5 @@
 ######################################################################
+# 16-11-24, mm: Updated notifymm
 # 15-01-27, mm: Moved to .dotfiles, removed wget
 # 15-01-19, mm: Updated methods to find fetch, wget
 # 14-11-27, mm: Removed slash from some PATH entries
@@ -118,7 +119,7 @@ alias l='ls -al'
 alias ll='ls -al'
 #alias ls='ls --color=auto '
 alias dmesg="sudo dmesg"
-alias notifymm='echo|mail -s "Job on $HOSTNAME done at `date +"%F %H:%M:%S"`" mm@jabber.meissner.it'
+alias notifymm='echo|mail -s "Job on $HOSTNAME done at `date +"%F %H:%M:%S"`" mm@im.meissner.it'
 alias testmail='echo|mail -s "Test von $HOSTNAME um `date`" '
 if [[ ${OSTYPE} = darwin* ]]; then
 	alias tm='sudo tail -F /var/log/system.log /var/log/secure.log'
