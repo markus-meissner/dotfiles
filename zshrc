@@ -171,6 +171,10 @@ bindkey "^?"	backward-delete-char
 
 autoload -U compinit
 compinit -u
+
+# mmv replacement (http://www.zshwiki.org/home/builtin/functions/zmv)
+autoload -U zmv
+
 # history-incremental-pattern-search-backward was added in 4.3.9 which is not available in lenny-backports
 # use the new *-pattern-* widgets for incremental history search
 if is439 ; then
