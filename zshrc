@@ -1,4 +1,5 @@
 ######################################################################
+# 18-01-09, mm: Updated tml
 # 16-11-24, mm: Updated notifymm
 # 15-01-27, mm: Moved to .dotfiles, removed wget
 # 15-01-19, mm: Updated methods to find fetch, wget
@@ -125,15 +126,13 @@ if [[ ${OSTYPE} = darwin* ]]; then
 	alias tm='sudo tail -F /var/log/system.log /var/log/secure.log'
 elif [[ ${OSTYPE} = freebsd* ]]; then
     alias tm='sudo tail -F /var/log/auth.log /var/log/cron /var/log/security /var/log/messages'
-    alias tml='sudo tail -F /var/log/maillog'
 elif [[ ${VENDOR} = "redhat" ]]; then
     # Red Hat Enterprise Linux Server release 6.6 (Santiago)
     alias tm='sudo tail -F /var/log/secure /var/log/cron /var/log/messages'
-    alias tml='sudo tail -F /var/log/maillog'
 else 
     alias tm='sudo tail -F /var/log/auth.log /var/log/syslog'
-    alias tml='sudo tail -F /var/log/mail.log'
 fi
+alias tml='sudo tail -F $(sudo find /var/log -name dovecot.log -o -name maillog -o -name mail.log)'
 alias iptables-l='sudo iptables -n --line-numbers -L'
 alias iptables-la='sudo iptables-l -v; iptables-l -v -t nat'
 alias ifconfig='/sbin/ifconfig'
