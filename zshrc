@@ -1,4 +1,5 @@
 ######################################################################
+# 18-02-16, mm: Added lssites
 # 18-01-09, mm: Updated tml
 # 16-11-24, mm: Updated notifymm
 # 15-01-27, mm: Moved to .dotfiles, removed wget
@@ -120,6 +121,7 @@ alias l='ls -al'
 alias ll='ls -al'
 #alias ls='ls --color=auto '
 alias dmesg="sudo dmesg"
+alias lssites='ls -al /etc/*/sites-enabled/'
 alias notifymm='echo|mail -s "Job on $HOSTNAME done at `date +"%F %H:%M:%S"`" mm@im.meissner.it'
 alias testmail='echo|mail -s "Test von $HOSTNAME um `date`" '
 if [[ ${OSTYPE} = darwin* ]]; then
