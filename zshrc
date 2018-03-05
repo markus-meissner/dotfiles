@@ -1,6 +1,5 @@
 ######################################################################
-# 18-03-01, mm: Updated lssites
-# 18-02-16, mm: Added lssites
+# 18-03-05, mm: Added / udpated lssites
 # 18-01-09, mm: Updated tml
 # 16-11-24, mm: Updated notifymm
 # 15-01-27, mm: Moved to .dotfiles, removed wget
@@ -122,7 +121,7 @@ alias l='ls -al'
 alias ll='ls -al'
 #alias ls='ls --color=auto '
 alias dmesg="sudo dmesg"
-alias lssites='ls -al /etc/*/sites-enabled/ /etc/nginx/conf.d/server-*.conf'
+alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
 alias notifymm='echo|mail -s "Job on $HOSTNAME done at `date +"%F %H:%M:%S"`" mm@im.meissner.it'
 alias testmail='echo|mail -s "Test von $HOSTNAME um `date`" '
 if [[ ${OSTYPE} = darwin* ]]; then
