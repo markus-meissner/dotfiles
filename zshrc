@@ -1,38 +1,39 @@
 ######################################################################
-# 18-03-05, mm: Added / udpated lssites
-# 18-01-09, mm: Updated tml
-# 16-11-24, mm: Updated notifymm
-# 15-01-27, mm: Moved to .dotfiles, removed wget
-# 15-01-19, mm: Updated methods to find fetch, wget
-# 14-11-27, mm: Removed slash from some PATH entries
-# 13-02-17, mm: Added fetch (freebsd)
-# 13-01-23, mm: Added 48hdb
-# 12-01-05, mm: Removed DISPLAY variable (don't even know why it was here) to enable X11
-# 11-08-02, mm: Changed log-files for Mac OS X Lion
-# 10-11-26, mm: Removed mysql as we now use the .dmg from mysql
-# 10-10-19, mm: Added bindkey ^r for screen usage
-# 10-10-13, mm: wget checks now $SUDO_USER
-# 10-10-02, mm: Added notifymm
-# 10-10-01, mm: Added mysql and mysqldump if under darwin
-# 10-03-10, mm: Increased HISTSIZE from 1000 to 10000, added HIST_IGNORE_DUPS, added CLOBBER
-# 10-02-07, mm: Added 2wdropbox
-# 10-01-16, mm: tm checks now OSTYPE, added EDITOR, edit
-# 09-12-22, mm: Added alias tml
-# 09-12-17, mm: Added history-incremental-pattern-search-backward for zsh>=4.3.9
-# 09-12-03, mm: Added .vimrc, less -FX
-# 09-09-17, mm: Changed wget from -nc to -N again, last changes lost
-# 09-09-10, mm: Changed wget from -nc to -N in order to update .zshrc if newer
-# 09-09-08, mm: Added ping completion by sshs known host
-# 09-09-06, mm: Added alias iptables-*
-# 09-07-24, mm: Added alias tm
-# 09-07-06, mm: Added ~/bin to $PATH
-# 09-05-22, mm: unsetopt recexact
-# 09-04-21, mm: setopt noautomenu
-# 09-04-16, mm: Added testmail alias
-# 09-04-08, mm: Disabled MENUCOMPLETE
-# 09-04-06, mm: Added TZ
-# 09-03-31, mm: Added backward-delete-char, minor changes
 # 09-03-28, mm: Added known_hosts
+# 09-03-31, mm: Added backward-delete-char, minor changes
+# 09-04-06, mm: Added TZ
+# 09-04-08, mm: Disabled MENUCOMPLETE
+# 09-04-16, mm: Added testmail alias
+# 09-04-21, mm: setopt noautomenu
+# 09-05-22, mm: unsetopt recexact
+# 09-07-06, mm: Added ~/bin to $PATH
+# 09-07-24, mm: Added alias tm
+# 09-09-06, mm: Added alias iptables-*
+# 09-09-08, mm: Added ping completion by sshs known host
+# 09-09-10, mm: Changed wget from -nc to -N in order to update .zshrc if newer
+# 09-09-17, mm: Changed wget from -nc to -N again, last changes lost
+# 09-12-03, mm: Added .vimrc, less -FX
+# 09-12-17, mm: Added history-incremental-pattern-search-backward for zsh>=4.3.9
+# 09-12-22, mm: Added alias tml
+# 10-01-16, mm: tm checks now OSTYPE, added EDITOR, edit
+# 10-02-07, mm: Added 2wdropbox
+# 10-03-10, mm: Increased HISTSIZE from 1000 to 10000, added HIST_IGNORE_DUPS, added CLOBBER
+# 10-10-01, mm: Added mysql and mysqldump if under darwin
+# 10-10-02, mm: Added notifymm
+# 10-10-13, mm: wget checks now $SUDO_USER
+# 10-10-19, mm: Added bindkey ^r for screen usage
+# 10-11-26, mm: Removed mysql as we now use the .dmg from mysql
+# 11-08-02, mm: Changed log-files for Mac OS X Lion
+# 12-01-05, mm: Removed DISPLAY variable (don't even know why it was here) to enable X11
+# 13-01-23, mm: Added 48hdb
+# 13-02-17, mm: Added fetch (freebsd)
+# 14-11-27, mm: Removed slash from some PATH entries
+# 15-01-19, mm: Updated methods to find fetch, wget
+# 15-01-27, mm: Moved to .dotfiles, removed wget
+# 16-11-24, mm: Updated notifymm
+# 18-01-09, mm: Updated tml
+# 18-03-05, mm: Added / udpated lssites
+# 19-03-01, mm: Added /snap/bin to PATH, added command_not_found_handler
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -88,7 +89,10 @@ zmodload -a zsh/zprof zprof
 
 
 PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH"
-TZ="America/New_York"
+if [ -d "/snap/bin" ] ; then
+    export PATH="$PATH:/snap/bin"
+fi
+
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
@@ -281,6 +285,10 @@ growl() { echo -e $'\e]9;'${1}'\007' ; return  ; }
 TZ='Europe/Berlin'; export TZ
 
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if [[ -f /etc/zsh_command_not_found ]]; then
+    source /etc/zsh_command_not_found
+fi
 
 if [[ $USER == "root" ]]; then
     echo "No selfupdate as user root, call ~/.dotfiles/selfupdate manually if needed"
