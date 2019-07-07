@@ -159,7 +159,8 @@ else
 fi
 
 # alias	=clear
-stty erase ^H &>/dev/null
+# https://stackoverflow.com/questions/9701366/vim-backspace-leaves
+# stty erase ^H &>/dev/null
 bindkey "^[[3~"	delete-char
 bindkey "^?"	backward-delete-char
 #chpwd() {
