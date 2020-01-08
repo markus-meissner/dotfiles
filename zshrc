@@ -34,6 +34,7 @@
 # 18-01-09, mm: Updated tml
 # 18-03-05, mm: Added / udpated lssites
 # 19-03-01, mm: Added /snap/bin to PATH, added command_not_found_handler
+# 20-01-08, mm: Removed alias edit
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -150,13 +151,7 @@ alias brew="sudo -H -u adm brew"
 # global alias will be expanded at any place in the command line
 alias -g less=$PAGER
 alias -g grep="grep --color"
-if [ $SSH_TTY ]; then
-    alias -g edit=$EDITOR
-elif [ -d /Applications/TextWrangler.app ]; then
-    alias -g edit='open -a TextWrangler'
-else
-    alias -g edit=$EDITOR
-fi
+# removed alias edit as "systectl edit" will not work with it
 
 # alias	=clear
 # https://stackoverflow.com/questions/9701366/vim-backspace-leaves
