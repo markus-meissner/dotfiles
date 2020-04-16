@@ -129,7 +129,7 @@ alias ll='ls -al'
 alias dmesg="sudo dmesg"
 alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
 # uid 65534 is on most systems "nobody"
-alias lsusers='awk -F: ''($3 >= 1000 && $3 < 65534) {printf "%s:%s\n",$1,$3}'' /etc/passwd'
+alias lsusers='awk -F: ''($3 >= 1000 && $3 < 65534) { print $0 }'' /etc/passwd'
 alias notifymm='echo|mail -s "Job on $HOSTNAME done at `date +"%F %H:%M:%S"`" mm@im.meissner.it'
 alias testmail='echo|mail -s "Test von $HOSTNAME um `date`" '
 if [[ ${OSTYPE} = darwin* ]]; then
