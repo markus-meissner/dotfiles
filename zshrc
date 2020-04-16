@@ -35,6 +35,7 @@
 # 18-03-05, mm: Added / udpated lssites
 # 19-03-01, mm: Added /snap/bin to PATH, added command_not_found_handler
 # 20-01-08, mm: Removed alias edit
+# 20-04-16, mm: Added lsusers
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -127,6 +128,8 @@ alias ll='ls -al'
 #alias ls='ls --color=auto '
 alias dmesg="sudo dmesg"
 alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
+# uid 65534 is on most systems "nobody"
+alias lsusers='awk -F: ''($3 >= 1000 && $3 < 65534) {printf "%s:%s\n",$1,$3}'' /etc/passwd'
 alias notifymm='echo|mail -s "Job on $HOSTNAME done at `date +"%F %H:%M:%S"`" mm@im.meissner.it'
 alias testmail='echo|mail -s "Test von $HOSTNAME um `date`" '
 if [[ ${OSTYPE} = darwin* ]]; then
