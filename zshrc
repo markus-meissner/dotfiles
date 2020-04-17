@@ -36,6 +36,7 @@
 # 19-03-01, mm: Added /snap/bin to PATH, added command_not_found_handler
 # 20-01-08, mm: Removed alias edit
 # 20-04-16, mm: Added lsusers
+# 20-04-17, mm: Changed editor from 'vim' to full path (which vim), removed MUTT_EDITOR
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -98,9 +99,9 @@ fi
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
-HOSTNAME="`hostname`"
+HOSTNAME="$(hostname)"
 PAGER='less -FX'
-EDITOR='vim'
+EDITOR="$(which vim)"
 
 source ~/.dotfiles/zsh/prompt.zsh
 
@@ -109,12 +110,6 @@ LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
 LC_CTYPE=C
 #DISPLAY=:0
-
-if [ $SSH_TTY ]; then
-  MUTT_EDITOR=vim
-else
-  MUTT_EDITOR=emacsclient.emacs-snapshot
-fi
 
 unsetopt ALL_EXPORT
 # # --------------------------------------------------------------------
