@@ -37,6 +37,7 @@
 # 20-01-08, mm: Removed alias edit
 # 20-04-16, mm: Added lsusers
 # 20-04-17, mm: Changed editor from 'vim' to full path (which vim), removed MUTT_EDITOR
+# 20-04-24, mm: Added lsphppools
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -122,6 +123,7 @@ alias l='ls -al'
 alias ll='ls -al'
 #alias ls='ls --color=auto '
 alias dmesg="sudo dmesg"
+alias lsphppools='l /etc/php/*/fpm/pool.d/*conf'
 alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
 # uid 65534 is on most systems "nobody"
 alias lsusers='awk -F: ''($3 >= 1000 && $3 < 65534) { print $0 }'' /etc/passwd'
