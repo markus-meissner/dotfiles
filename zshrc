@@ -38,6 +38,7 @@
 # 20-04-16, mm: Added lsusers
 # 20-04-17, mm: Changed editor from 'vim' to full path (which vim), removed MUTT_EDITOR
 # 20-04-24, mm: Added lsphppools
+# 20-04-28, mm: Added whatsmyip
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -142,15 +143,13 @@ fi
 alias tml='sudo tail -F $(sudo find /var/log -name dovecot.log -o -name maillog -o -name mail.log)'
 alias iptables-l='sudo iptables -n --line-numbers -L'
 alias iptables-la='sudo iptables-l -v; iptables-l -v -t nat'
-alias ifconfig='/sbin/ifconfig'
-alias route='/sbin/route'
 alias -g 2wdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/2week_dropbox/"
 alias -g 48hdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/48h_dropbox/"
 alias brew="sudo -H -u adm brew"
-
+alias whatsmyip="wget -q -O - https://ip.meissner.it"
 # global alias will be expanded at any place in the command line
 alias -g less=$PAGER
-alias -g grep="grep --color"
+#alias -g grep="grep --color"
 # removed alias edit as "systectl edit" will not work with it
 
 # alias	=clear
