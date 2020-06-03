@@ -39,6 +39,7 @@
 # 20-04-17, mm: Changed editor from 'vim' to full path (which vim), removed MUTT_EDITOR
 # 20-04-24, mm: Added lsphppools
 # 20-04-28, mm: Added whatsmyip
+# 20-06-03, mm: Updated aliases
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -117,21 +118,21 @@ unsetopt ALL_EXPORT
 # # --------------------------------------------------------------------
 # # aliases
 # # --------------------------------------------------------------------
-alias slrn="slrn -n"
-alias man='LC_ALL=C LANG=C man'
-alias f=finger
+alias brew="sudo -H -u adm brew"
+alias iptables-l='sudo iptables -n --line-numbers -L'
+alias iptables-la='sudo iptables-l -v; iptables-l -v -t nat'
 alias l='ls -al'
 alias ll='ls -al'
-#alias ls='ls --color=auto '
-alias dmesg="sudo dmesg"
 alias lsphppools='l /etc/php/*/fpm/pool.d/*conf'
 alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
 # uid 65534 is on most systems "nobody"
 alias lsusers='awk -F: ''($3 >= 1000 && $3 < 65534) { print $0 }'' /etc/passwd'
 alias notifymm='echo|mail -s "Job on $HOSTNAME done at `date +"%F %H:%M:%S"`" mm@im.meissner.it'
+# Prevents "zsh: correct 'git' to '.git'" when using "sudo git ..."
+alias sudo="nocorrect sudo"
 alias testmail='echo|mail -s "Test von $HOSTNAME um `date`" '
 if [[ ${OSTYPE} = darwin* ]]; then
-	alias tm='sudo tail -F /var/log/system.log /var/log/secure.log'
+    alias tm='sudo tail -F /var/log/system.log /var/log/secure.log'
 elif [[ ${OSTYPE} = freebsd* ]]; then
     alias tm='sudo tail -F /var/log/auth.log /var/log/cron /var/log/security /var/log/messages'
 elif [[ ${VENDOR} = "redhat" ]]; then
@@ -141,15 +142,9 @@ else
     alias tm='sudo tail -F /var/log/auth.log /var/log/syslog'
 fi
 alias tml='sudo tail -F $(sudo find /var/log -name dovecot.log -o -name maillog -o -name mail.log)'
-alias iptables-l='sudo iptables -n --line-numbers -L'
-alias iptables-la='sudo iptables-l -v; iptables-l -v -t nat'
-alias -g 2wdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/2week_dropbox/"
-alias -g 48hdb="meissner@ivar.meissner.it:/home/meissner/smit/htdocs/dl/48h_dropbox/"
-alias brew="sudo -H -u adm brew"
 alias whatsmyip="wget -q -O - https://ip.meissner.it"
 # global alias will be expanded at any place in the command line
 alias -g less=$PAGER
-#alias -g grep="grep --color"
 # removed alias edit as "systectl edit" will not work with it
 
 # alias	=clear
