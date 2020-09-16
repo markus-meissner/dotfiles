@@ -40,6 +40,7 @@
 # 20-04-24, mm: Added lsphppools
 # 20-04-28, mm: Added whatsmyip
 # 20-06-03, mm: Updated aliases
+# 20-09-16, mm: Added lsphppoolsports
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -124,6 +125,7 @@ alias iptables-la='sudo iptables-l -v; iptables-l -v -t nat'
 alias l='ls -al'
 alias ll='ls -al'
 alias lsphppools='l /etc/php/*/fpm/pool.d/*conf'
+alias lsphppoolsports='egrep "^listen " /etc/php/*/fpm/pool.d/*.conf|awk "{print \$3;}"|sort -u'
 alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
 # uid 65534 is on most systems "nobody"
 alias lsusers='awk -F: ''($3 >= 1000 && $3 < 65534) { print $0 }'' /etc/passwd'
