@@ -41,6 +41,7 @@
 # 20-04-28, mm: Added whatsmyip
 # 20-06-03, mm: Updated aliases
 # 20-09-16, mm: Added lsphppoolsports
+# 22-04-19, mm: Added lsof-tcp
 ######################################################################
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -124,6 +125,7 @@ alias iptables-l='sudo iptables -n --line-numbers -L'
 alias iptables-la='sudo iptables-l -v; iptables-l -v -t nat'
 alias l='ls -al'
 alias ll='ls -al'
+alias lsof-tcp='sudo lsof -nP -iTCP -sTCP:LISTEN'
 alias lsphppools='l /etc/php/*/fpm/pool.d/*conf'
 alias lsphppoolsports='egrep "^listen " /etc/php/*/fpm/pool.d/*.conf|awk "{print \$3;}"|sort -u'
 alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
