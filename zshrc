@@ -42,7 +42,10 @@
 # 20-06-03, mm: Updated aliases
 # 20-09-16, mm: Added lsphppoolsports
 # 22-04-19, mm: Added lsof-tcp
+# 22-05-04, mm: Added HIST_FIND_NO_DUPS, HIST_IGNORE_SPACE
 ######################################################################
+
+# https://zsh.sourceforge.io/Doc/Release/Options.html
 
 # From http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
 is439(){
@@ -65,8 +68,10 @@ setopt EXTENDED_HISTORY		# puts timestamps in the history (extendedhistory)
 				# to dump the history with readable timestamps
 # setopt HASH_CMDS		# turns on hashing
 setopt HIST_ALLOW_CLOBBER
+setopt HIST_FIND_NO_DUPS        # no duplicates while searching in history
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_DUPS		# ignore duplicates of the prev event
+setopt HIST_IGNORE_SPACE        # ignore commands with leading space, used for commands conaining passwords
 setopt INC_APPEND_HISTORY SHARE_HISTORY
 setopt ALL_EXPORT
 
