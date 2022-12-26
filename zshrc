@@ -43,6 +43,7 @@
 # 20-09-16, mm: Added lsphppoolsports
 # 22-04-19, mm: Added lsof-tcp
 # 22-05-04, mm: Added HIST_FIND_NO_DUPS, HIST_IGNORE_SPACE
+# 22-12-26, mm: Updated lsphppoolsports
 ######################################################################
 
 # https://zsh.sourceforge.io/Doc/Release/Options.html
@@ -132,7 +133,7 @@ alias l='ls -al'
 alias ll='ls -al'
 alias lsof-tcp='sudo lsof -nP -iTCP -sTCP:LISTEN'
 alias lsphppools='l /etc/php/*/fpm/pool.d/*conf'
-alias lsphppoolsports='egrep "^listen " /etc/php/*/fpm/pool.d/*.conf|awk "{print \$3;}"|sort -u'
+alias lsphppoolsports='egrep "^listen " /etc/php/*/fpm/pool.d/*.conf|awk "{print \$3;}"|sort'
 alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
 # uid 65534 is on most systems "nobody"
 alias lsusers='awk -F: ''($3 >= 1000 && $3 < 65534) { print $0 }'' /etc/passwd'
