@@ -298,8 +298,9 @@ else
     ~/.dotfiles/selfupdate
 fi
 
-if which git 1>/dev/null; then
+if which git >/dev/null 2>&1; then
     echo "Markus dotfiles v$(cd ~/.dotfiles; git log -n1 --pretty=format:"%ad" --date=short)"
 else
     echo "Markus dotfiles - no git, no version"
 fi
+

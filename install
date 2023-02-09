@@ -10,7 +10,7 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
 
-if which git 1>/dev/null; then
+if which git >/dev/null 2>&1; then
     echo "[dotfiles] Fetching new files from git..."
     if git fetch; then
         git merge origin/master
@@ -23,3 +23,4 @@ else
 fi
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+
