@@ -44,6 +44,7 @@
 # 22-04-19, mm: Added lsof-tcp
 # 22-05-04, mm: Added HIST_FIND_NO_DUPS, HIST_IGNORE_SPACE
 # 22-12-26, mm: Updated lsphppoolsports
+# 23-04-18, mm: Added /opt/homebrew/bin
 ######################################################################
 
 # https://zsh.sourceforge.io/Doc/Release/Options.html
@@ -103,9 +104,8 @@ zmodload -a zsh/zprof zprof
 
 
 PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH"
-if [ -d "/snap/bin" ] ; then
-    export PATH="$PATH:/snap/bin"
-fi
+[ -d "/opt/homebrew/bin" ] && export PATH="/opt/homebrew/bin:$PATH"
+[ -d "/snap/bin" ] && export PATH="$PATH:/snap/bin"
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
