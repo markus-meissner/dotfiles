@@ -126,7 +126,7 @@ unsetopt ALL_EXPORT
 # # --------------------------------------------------------------------
 # # aliases
 # # --------------------------------------------------------------------
-alias brew="sudo -H -u adm brew"
+# alias brew="sudo -H -u adm brew"
 alias iptables-l='sudo iptables -n --line-numbers -L'
 alias iptables-la='sudo iptables-l -v; iptables-l -v -t nat'
 alias l='ls -al'
