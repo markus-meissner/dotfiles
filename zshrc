@@ -93,7 +93,6 @@ setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
 
 # Autoload zsh modules when they are referenced
-zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 # http://stackoverflow.com/a/3486417
@@ -131,7 +130,6 @@ alias iptables-l='sudo iptables -n --line-numbers -L'
 alias iptables-la='sudo iptables-l -v; iptables-l -v -t nat'
 alias l='ls -al'
 alias ll='ls -al'
-alias lsof-tcp='sudo lsof -nP -iTCP -sTCP:LISTEN'
 alias lsphppools='l /etc/php/*/fpm/pool.d/*conf'
 alias lsphppoolsports='egrep "^listen " /etc/php/*/fpm/pool.d/*.conf|awk "{print \$3;}"|sort'
 alias lssites='{ find /etc/*/sites-enabled/ -type l; find /etc/nginx/conf.d/ -type f -name "server-*.conf" } | xargs ls -l'
@@ -144,11 +142,14 @@ alias testmail='echo|mail -s "Test von $HOSTNAME um `date`" '
 if [[ ${OSTYPE} = darwin* ]]; then
     alias tm='sudo tail -F /var/log/system.log /var/log/secure.log'
 elif [[ ${OSTYPE} = freebsd* ]]; then
+    alias lsof-tcp='echo "sockstat -4 -l"; sockstat -4 -l'
     alias tm='sudo tail -F /var/log/auth.log /var/log/cron /var/log/security /var/log/messages'
 elif [[ ${VENDOR} = "redhat" ]]; then
     # Red Hat Enterprise Linux Server release 6.6 (Santiago)
     alias tm='sudo tail -F /var/log/secure /var/log/cron /var/log/messages'
+    alias lsof-tcp='sudo lsof -nP -iTCP -sTCP:LISTEN'
 else 
+    alias lsof-tcp='sudo lsof -nP -iTCP -sTCP:LISTEN'
     alias tm='sudo tail -F /var/log/auth.log /var/log/syslog'
 fi
 alias tml='sudo tail -F $(sudo find /var/log -name dovecot.log -o -name maillog -o -name mail.log)'
