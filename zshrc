@@ -153,7 +153,7 @@ else
     alias tm='sudo tail -F /var/log/auth.log /var/log/syslog'
 fi
 alias tml='sudo tail -F $(sudo find /var/log -name dovecot.log -o -name maillog -o -name mail.log)'
-alias whatsmyip="wget -q -O - https://ip.meissner.it"
+alias whatsmyip='which curl >|/dev/null && curl -s https://ip.meissner.it || wget -q -O - https://ip.meissner.it'
 # global alias will be expanded at any place in the command line
 alias -g less=$PAGER
 # removed alias edit as "systectl edit" will not work with it
