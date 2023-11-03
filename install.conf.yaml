@@ -1,9 +1,13 @@
 - clean: []
 
 - shell:
-    - [git submodule update, Installing/updating submodules]
+    - [ git submodule update --init --recursive, Installing/updating submodules ]
 
 - link:
+    ~/.config/fish:
+      if: 'which fish'
+      create: true
+      path: fish
     ~/.gitconfig: gitconfig
     ~/.vim/autoload/togglebg.vim:
         path:  vim/autoload/togglebg.vim
@@ -16,3 +20,4 @@
         create: true
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
+
