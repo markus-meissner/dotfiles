@@ -5,7 +5,9 @@ if status is-interactive
     # .fish scripts in ~/.config/fish/conf.d/ are also automatically executed before config.fish.
     # -> see conf.d/0-local.fish for details
 
-    set -gx PATH $PATH ~/bin
+    set -gx PATH $PATH ~/.local/bin ~/bin
     [ -d /opt/homebrew/bin ] && set -gx PATH $PATH /opt/homebrew/bin
+
+    starship init fish | source
 end
 
