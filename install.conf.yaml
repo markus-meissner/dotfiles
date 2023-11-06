@@ -11,6 +11,7 @@
       if: 'which fish'
       create: true
       path: fish
+    ~/.config/starship.toml: starship.toml
     ~/.gitconfig: gitconfig
     ~/.vim/autoload/togglebg.vim:
         path:  vim/autoload/togglebg.vim
