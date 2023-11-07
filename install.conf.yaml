@@ -5,6 +5,7 @@
 
 - shell:
     - [ git submodule update --init --recursive, Installing/updating submodules ]
+    - [ ./install-fzf, Installing fzf (fish only) ]
 
 - link:
     ~/.config/fish:

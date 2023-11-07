@@ -1,0 +1,13 @@
+#/usr/bin/env sh
+
+if which fish 1>/dev/null; then
+    if ! which fzf 1>/dev/null; then
+        echo "Installing fzf..."
+        [ -d fzf ] || git clone --depth 1 https://github.com/junegunn/fzf.git
+        cd fzf
+        ./install --no-key-bindings --no-completion --no-update-rc --no-bash --no-zsh --no-fish
+        [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
+        [ -e ~/.local/bin/fzf ] || ln -s $PWD/bin/fzf ~/.local/bin/fzf
+    fi
+fi
+
