@@ -7,8 +7,8 @@ function fish_greeting
         ~/.dotfiles/selfupdate
     end
 
-    if which git >/dev/null 2>&1
-        echo "Markus dotfiles v$(cd ~/.dotfiles; git log -n1 --pretty=format:"%ad" --date=short)"
+    if command -q git
+        echo "Markus dotfiles v$(git -C ~/.dotfiles log -n1 --pretty=format:"%ad" --date=short)"
     else
         echo "Markus dotfiles - no git, no version"
     end

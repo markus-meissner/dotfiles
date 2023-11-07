@@ -37,7 +37,12 @@ function fish_prompt --description 'Write out the prompt'
         set prompt_user ""
     end
 
-    echo -s "[$prompt_user" (prompt_hostname) ':' $cwd_color (prompt_pwd) "]" $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
+    if test -n "$os_branding_version"
+        # Add space
+        set os_branding_version " $os_branding_version"
+    end
+
+    echo -s (set_color $os_branding_color) $os_branding_icon $normal $os_branding_version " [$prompt_user" $normal (prompt_hostname) ':' $cwd_color (prompt_pwd) $normal "]" $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
     echo -n -s $status_color $suffix ' ' $normal
 end
 
