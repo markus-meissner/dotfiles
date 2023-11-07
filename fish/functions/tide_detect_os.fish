@@ -1,23 +1,24 @@
 # https://github.com/IlanCosman/tide/blob/main/functions/_tide_detect_os.fish
-# Outputs icon, color, bg_color
+# Outputs icon, color, bg_color, os_version
 function tide_detect_os
     set -lx defaultColor 080808 CED7CF
+    set -l os_version (tide_detect_os_version /etc/os-release VERSION_ID)
     switch (uname | string lower)
         case darwin
-            printf %s\n  D6D6D6 333333 # from apple.com header
+            printf %s\n  D6D6D6 333333 $os_version # from apple.com header
         case freebsd openbsd dragonfly
-            printf %s\n  FFFFFF AB2B28 # https://freebsdfoundation.org/about-us/about-the-foundation/project/
+            printf %s\n  FFFFFF AB2B28 $os_version # https://freebsdfoundation.org/about-us/about-the-foundation/project/
         case 'cygwin*' 'mingw*_nt*' 'msys_nt*'
-            printf %s\n  FFFFFF 00CCFF # https://answers.microsoft.com/en-us/windows/forum/all/what-is-the-official-windows-8-blue-rgb-or-hex/fd57144b-f69b-42d8-8c21-6ca911646e44
+            printf %s\n  FFFFFF 00CCFF $os_version# https://answers.microsoft.com/en-us/windows/forum/all/what-is-the-official-windows-8-blue-rgb-or-hex/fd57144b-f69b-42d8-8c21-6ca911646e44
         case linux
             if test (uname -o) = Android
                 echo ﲎ # This character is evil and messes up code display, so it's put on its own line
                 # https://developer.android.com/distribute/marketing-tools/brand-guidelines
-                printf %s\n 3DDC84 3C3F41 # fg is from above link, bg is from Android Studio default dark theme
+                printf %s\n 3DDC84 3C3F41 $os_version # fg is from above link, bg is from Android Studio default dark theme
             else
-                tide_detect_os_linux_cases /etc/os-release ID ||
-                    tide_detect_os_linux_cases /etc/os-release ID_LIKE ||
-                    tide_detect_os_linux_cases /etc/lsb-release DISTRIB_ID ||
+                tide_detect_os_linux_cases /etc/os-release ID $os_version ||
+                    tide_detect_os_linux_cases /etc/os-release ID_LIKE $os_version ||
+                    tide_detect_os_linux_cases /etc/lsb-release DISTRIB_ID $os_version ||
                     printf %s\n  $defaultColor
             end
         case '*'
@@ -25,7 +26,15 @@ function tide_detect_os
     end
 end
 
-function tide_detect_os_linux_cases -a file key
+function tide_detect_os_version -a file key
+    test -e $file || return
+    set -l split_file (string split '=' <$file)
+    set -l key_index (contains --index $key $split_file) || return
+    set -l value (string trim --chars='"' $split_file[(math $key_index + 1)])
+    echo $value
+end
+
+function tide_detect_os_linux_cases -a file key os_version
     test -e $file || return
     set -l split_file (string split '=' <$file)
     set -l key_index (contains --index $key $split_file) || return
@@ -41,7 +50,7 @@ function tide_detect_os_linux_cases -a file key
         case centos
             printf %s\n  000000 D4D4D4 # https://wiki.centos.org/ArtWork/Brand/Logo, monochromatic
         case debian
-            printf %s\n  C70036 D4D4D4 # from debian logo https://www.debian.org/logos/openlogo-nd-100.png
+            printf %s\n  C70036 D4D4D4 $os_version # from debian logo https://www.debian.org/logos/openlogo-nd-100.png
         case devuan
             printf %s\n  $defaultColor # logo is monochromatic
         case elementary
@@ -61,7 +70,7 @@ function tide_detect_os_linux_cases -a file key
         case opensuse-leap opensuse-tumbleweed opensuse-microos
             printf %s\n  73BA25 173f4f # https://en.opensuse.org/openSUSE:Artwork_brand
         case raspbian
-            printf %s\n  FFFFFF A22846 # https://static.raspberrypi.org/files/Raspberry_Pi_Visual_Guidelines_2020.pdf
+            printf %s\n  FFFFFF A22846 $os_version # https://static.raspberrypi.org/files/Raspberry_Pi_Visual_Guidelines_2020.pdf
         case rhel
             printf %s\n  EE0000 000000 # https://www.redhat.com/en/about/brand/standards/color
         case sabayon
@@ -69,7 +78,7 @@ function tide_detect_os_linux_cases -a file key
         case slackware
             printf %s\n  $defaultColor # Doesn't really have a logo, and the colors are too close to PWD blue anyway
         case ubuntu
-            printf %s\n  E95420 D4D4D4 # https://design.ubuntu.com/brand/
+            printf %s\n  E95420 D4D4D4 $os_version # https://design.ubuntu.com/brand/
         case void
             printf %s\n  FFFFFF 478061 # from https://alpha.de.repo.voidlinux.org/logos/void.svg
         case '*'
