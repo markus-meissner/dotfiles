@@ -8,6 +8,10 @@ if status is-interactive
     set -gx PATH $PATH ~/.local/bin ~/bin
     [ -d /opt/homebrew/bin ] && set -gx PATH $PATH /opt/homebrew/bin
 
-    starship init fish | source
+    if which lsb_release; and test "$(lsb_release --short --release)" -eq 10
+        # Don't set marker option in Debian 10
+        echo "Debian 10, setting FZF_DEFAULT_OPTS"
+        set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap'
+    end
 end
 
