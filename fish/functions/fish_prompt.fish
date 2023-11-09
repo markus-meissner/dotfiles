@@ -32,7 +32,11 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     if test "$USER" != "meissner"
-        set prompt_user "$USER@"
+        if functions -q fish_is_root_user; and fish_is_root_user
+            set prompt_user (set_color red)$USER$normal"@"
+        else
+            set prompt_user (set_color red) "$USER@"
+        end
     else
         set prompt_user ""
     end
