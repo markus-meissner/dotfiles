@@ -3,6 +3,7 @@ set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_showcolorhints 1
 set -g __fish_git_prompt_char_stateseparator ' '
 set -g __fish_git_prompt_color_branch normal
+set -g __fish_git_prompt_color_cleanstate green
 
 set -g fish_color_cwd blue
 
