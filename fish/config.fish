@@ -7,5 +7,11 @@ if status is-interactive
 
     set -gx PATH $PATH ~/.local/bin ~/bin
     [ -d /opt/homebrew/bin ] && set -gx PATH $PATH /opt/homebrew/bin
+
+    # https://unix.stackexchange.com/a/176331
+    function setenv; set -gx $argv; end
+    if test -e ~/.env
+        source ~/.env
+    end
 end
 
