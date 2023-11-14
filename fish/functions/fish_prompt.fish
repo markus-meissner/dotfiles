@@ -38,7 +38,7 @@ function fish_prompt --description 'Write out the prompt'
         if functions -q fish_is_root_user; and fish_is_root_user
             set prompt_user (set_color red)$USER$normal"@"
         else
-            set prompt_user (set_color red) "$USER@"
+            set prompt_user (set_color blue)$USER$normal"@"
         end
     else
         set prompt_user ""

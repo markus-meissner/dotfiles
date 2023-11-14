@@ -8,6 +8,8 @@ if status is-interactive
     set -gx PATH $PATH ~/.local/bin ~/bin
     [ -d /opt/homebrew/bin ] && set -gx PATH $PATH /opt/homebrew/bin
 
+    set -gx EDITOR $(which vim)
+
     # https://unix.stackexchange.com/a/176331
     function setenv; set -gx $argv; end
     if test -e ~/.env
