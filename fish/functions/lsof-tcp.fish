@@ -6,7 +6,7 @@ function lsof-tcp
         case linux
             echo "sudo lsof -nP -iTCP -sTCP:LISTEN"
             sudo lsof -nP -iTCP -sTCP:LISTEN
-        case'*'
+        case '*'
             echo -ns '?'
     end
 end

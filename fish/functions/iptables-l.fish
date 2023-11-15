@@ -1,3 +1,3 @@
 function iptables-l
-    sudo iptables -n --line-numbers -L
+    sudo iptables -n --line-numbers -L $argv
 end
