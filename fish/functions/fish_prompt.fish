@@ -1,18 +1,10 @@
-# https://fishshell.com/docs/current/cmds/fish_git_prompt.html
-set -g __fish_git_prompt_show_informative_status 1
-set -g __fish_git_prompt_showcolorhints 1
-set -g __fish_git_prompt_char_stateseparator ' '
-set -g __fish_git_prompt_color_branch normal
-set -g __fish_git_prompt_color_cleanstate green
-
-set -g fish_color_cwd blue
+# Variables are set in ~/.config/fish/conf.d/0-local.fish
 
 function fish_prompt --description 'Write out the prompt'
     set -l last_status $status
     set -l normal (set_color normal)
     set -l status_color (set_color brgreen)
     set -l cwd_color (set_color $fish_color_cwd)
-    set -l vcs_color (set_color brpurple)
     set -l prompt_status ""
 
     # Since we display the prompt on a new line allow the directory names to be longer.
@@ -45,11 +37,12 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     if test -n "$os_branding_version"
-        # Add space
-        set os_branding_version " $os_branding_version"
+        set os_branding_version_prompt " $os_branding_version"
+    else
+        set os_branding_version_prompt ""
     end
 
-    echo -s (set_color $os_branding_color) $os_branding_icon $normal $os_branding_version " [$prompt_user" $normal (prompt_hostname) ':' $cwd_color (prompt_pwd) $normal "]" $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
+    echo -s (set_color $os_branding_color) $os_branding_icon $normal $os_branding_version_prompt " [$prompt_user" $normal (prompt_hostname) ':' $cwd_color (prompt_pwd) $normal "]" (fish_vcs_prompt) $normal ' ' $prompt_status
     echo -n -s $status_color $suffix ' ' $normal
 end
 
