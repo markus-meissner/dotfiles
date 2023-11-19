@@ -8,6 +8,11 @@ set Z_EXCLUDE "^$HOME\$"
 # We don't use tide any longer, only this (copied and modified) function
 tide_detect_os | read -g --line os_branding_icon os_branding_color os_branding_bg_color os_branding_version
 
+if test -n $os_branding_version
+    # Add space for prompt
+    set os_branding_version " $os_branding_version"
+end
+
 # https://fishshell.com/docs/current/cmds/fish_git_prompt.html
 set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_showcolorhints 1

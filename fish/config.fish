@@ -18,5 +18,11 @@ if status is-interactive
     if test -e ~/.env
         source ~/.env
     end
+
+    # FreeBSD has /home linked to /usr/home, this leads to
+    # a prompt showing /usr/home/user instead of ~
+    if test $PWD != $HOME -a (readlink -f $HOME) = $PWD
+        cd
+    end
 end
 

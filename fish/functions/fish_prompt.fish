@@ -12,12 +12,14 @@ function fish_prompt --description 'Write out the prompt'
     or set -lx fish_prompt_pwd_dir_length 0
 
     # Color the prompt differently when we're root
-    set -l suffix '❯'
     if functions -q fish_is_root_user; and fish_is_root_user
         if set -q fish_color_cwd_root
             set cwd_color (set_color $fish_color_cwd_root)
         end
         set suffix '#'
+    else
+        #set suffix '❯'
+        set suffix '$'
     end
 
     # Color the prompt in red on error
@@ -36,13 +38,7 @@ function fish_prompt --description 'Write out the prompt'
         set prompt_user ""
     end
 
-    if test -n "$os_branding_version"
-        set os_branding_version_prompt " $os_branding_version"
-    else
-        set os_branding_version_prompt ""
-    end
-
-    echo -s (set_color $os_branding_color) $os_branding_icon $normal $os_branding_version_prompt " [$prompt_user" $normal (prompt_hostname) ':' $cwd_color (prompt_pwd) $normal "]" (fish_vcs_prompt) $normal ' ' $prompt_status
+    echo -s (set_color $os_branding_color) $os_branding_icon $normal $os_branding_version " [$prompt_user" $normal (prompt_hostname) ':' $cwd_color (prompt_pwd) $normal "]" (fish_vcs_prompt) $normal ' ' $prompt_status
     echo -n -s $status_color $suffix ' ' $normal
 end
 

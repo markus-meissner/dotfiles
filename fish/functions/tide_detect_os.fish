@@ -2,7 +2,7 @@
 # Outputs icon, color, bg_color, os_version
 function tide_detect_os
     set -lx defaultColor 080808 CED7CF
-    set -l os_version (tide_detect_os_version /etc/os-release VERSION_ID)
+    set -l os_version (tide_detect_os_version)
     switch (uname | string lower)
         case darwin
             printf %s\n  D6D6D6 333333 $os_version # from apple.com header
@@ -26,12 +26,18 @@ function tide_detect_os
     end
 end
 
-function tide_detect_os_version -a file key
-    test -e $file || return
-    set -l split_file (string split '=' <$file)
-    set -l key_index (contains --index $key $split_file) || return
-    set -l value (string trim --chars='"' $split_file[(math $key_index + 1)])
-    echo $value
+function tide_detect_os_version
+    switch (uname | string lower)
+        case darwin
+            sw_vers -productVersion
+        case freebsd openbsd dragonfly linux
+            set -l file /etc/os-release
+            test -e $file || return
+            set -l split_file (string split '=' <$file)
+            set -l key_index (contains --index VERSION_ID $split_file) || return
+            set -l value (string trim --chars='"' $split_file[(math $key_index + 1)])
+            echo $value
+    end
 end
 
 function tide_detect_os_linux_cases -a file key os_version
