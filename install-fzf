@@ -4,7 +4,7 @@ if which fish 1>/dev/null; then
     if ! which fzf 1>/dev/null; then
         echo "Installing fzf..."
         [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
-	if test "$(uname)" == "FreeBSD"; then
+	if test "$(uname)" = "FreeBSD"; then
             # fzf/install requires bash
             cd ~/.local/bin
             curl -fL https://github.com/junegunn/fzf/releases/download/0.44.0/fzf-0.44.0-freebsd_amd64.tar.gz | tar -xzf -
