@@ -18,8 +18,8 @@ function fish_prompt --description 'Write out the prompt'
         end
         set suffix '#'
     else
-        #set suffix '❯'
-        set suffix '$'
+        set suffix '❯'
+        #set suffix '$'
     end
 
     # Color the prompt in red on error
