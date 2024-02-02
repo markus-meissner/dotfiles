@@ -1,6 +1,4 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-    
     # https://fishshell.com/docs/current/index.html#configuration
     # .fish scripts in ~/.config/fish/conf.d/ are also automatically executed before config.fish.
     # -> see conf.d/0-local.fish for details
@@ -12,6 +10,8 @@ if status is-interactive
         alias vi=vim
         set -gx EDITOR $(which vim)
     end
+
+    abbr -a -- ff 'find . -name'
 
     # https://unix.stackexchange.com/a/176331
     function setenv; set -gx $argv; end
