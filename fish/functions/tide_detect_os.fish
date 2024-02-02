@@ -76,7 +76,8 @@ function tide_detect_os_linux_cases -a file key os_version
         case opensuse-leap opensuse-tumbleweed opensuse-microos
             printf %s\n  73BA25 173f4f $os_version # https://en.opensuse.org/openSUSE:Artwork_brand
         case raspbian
-            printf %s\n  FFFFFF A22846 $os_version # https://static.raspberrypi.org/files/Raspberry_Pi_Visual_Guidelines_2020.pdf
+            #printf %s\n  FFFFFF A22846 $os_version # https://static.raspberrypi.org/files/Raspberry_Pi_Visual_Guidelines_2020.pdf
+            printf %s\n  C70036 D4D4D4 $os_version # https://static.raspberrypi.org/files/Raspberry_Pi_Visual_Guidelines_2020.pdf
         case rhel
             printf %s\n  EE0000 000000 $os_version # https://www.redhat.com/en/about/brand/standards/color
         case sabayon
