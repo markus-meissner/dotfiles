@@ -11,6 +11,7 @@ if status is-interactive
         set -gx EDITOR $(which vim)
     end
 
+    abbr -a -- du-hs 'sudo du -hs * | sort -h'
     abbr -a -- ff 'find . -name'
 
     # https://unix.stackexchange.com/a/176331
