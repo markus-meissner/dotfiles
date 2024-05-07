@@ -13,6 +13,11 @@
       create: true
       force: true
       path: fish
+    ~/.config/tmux:
+      if: 'test -f /etc/debian_version'
+      create: true
+      force: true
+      path: tmux
     ~/.gitconfig: gitconfig
     ~/.vim/autoload/togglebg.vim:
         path:  vim/autoload/togglebg.vim
