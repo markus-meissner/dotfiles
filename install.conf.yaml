@@ -2,6 +2,9 @@
 
 - create:
     - ~/.local/share/z/
+- create:
+    ~/tmp:
+      mode: 0700
 
 - shell:
     - [ git submodule update --init --recursive, Installing/updating submodules ]
