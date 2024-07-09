@@ -6,8 +6,10 @@ function tide_detect_os
     switch (uname | string lower)
         case darwin
             printf %s\n  D6D6D6 333333 $os_version # from apple.com header
-        case freebsd openbsd dragonfly
+        case freebsd dragonfly
             printf %s\n  990000 AB2B28 $os_version # https://freebsdfoundation.org/about-us/about-the-foundation/project/
+        case openbsd
+            printf %s\n OpenBSD normal normal $os_version
         case 'cygwin*' 'mingw*_nt*' 'msys_nt*'
             printf %s\n  FFFFFF 00CCFF $os_version# https://answers.microsoft.com/en-us/windows/forum/all/what-is-the-official-windows-8-blue-rgb-or-hex/fd57144b-f69b-42d8-8c21-6ca911646e44
         case linux
@@ -30,13 +32,15 @@ function tide_detect_os_version
     switch (uname | string lower)
         case darwin
             sw_vers -productVersion
-        case freebsd openbsd dragonfly linux
+        case freebsd dragonfly linux
             set -l file /etc/os-release
             test -e $file || return
             set -l split_file (string split '=' <$file)
             set -l key_index (contains --index VERSION_ID $split_file) || return
             set -l value (string trim --chars='"' $split_file[(math $key_index + 1)])
             echo $value
+        case openbsd
+            awk '/^OpenBSD [0-9\.]+ / { print $2; }' < /etc/motd
     end
 end
 
