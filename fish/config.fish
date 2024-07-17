@@ -11,6 +11,17 @@ if status is-interactive
         set -gx EDITOR $(which vim)
     end
 
+    # https://fishshell.com/docs/current/tutorial.html#conditionals-if-else-switch
+    if command -q less; and test "$(uname | string lower)" != "openbsd"
+        # 2024-07-17: Removed -X as I don't know if we need it
+        alias less='less --quit-if-one-screen'
+    else
+        # There is an unknown bug at MMs iTerm making less scrolling
+        # wildly, so simply use more on OpenBSD
+        # On OpenBSD more only supports -e, not --quit-at-eof
+        alias less='more -e'
+    end
+
     abbr -a -- du-hs 'sudo du -hs * | sort -h'
     abbr -a -- ff 'find . -name'
 
