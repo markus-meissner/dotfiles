@@ -14,7 +14,8 @@ if status is-interactive
     # https://fishshell.com/docs/current/tutorial.html#conditionals-if-else-switch
     if command -q less; and test "$(uname | string lower)" != "openbsd"
         # 2024-07-17: Removed -X as I don't know if we need it
-        alias less='less --quit-if-one-screen'
+        # less on BusyBox only supports -F, not --quit-if-one-screen
+        alias less='less -F'
     else
         # There is an unknown bug at MMs iTerm making less scrolling
         # wildly, so simply use more on OpenBSD
@@ -24,6 +25,7 @@ if status is-interactive
 
     abbr -a -- du-hs 'sudo du -hs * | sort -h'
     abbr -a -- ff 'find . -name'
+    abbr -a -- tmuxat 'tmux attach || tmux new'
 
     # https://unix.stackexchange.com/a/176331
     function setenv; set -gx $argv; end
