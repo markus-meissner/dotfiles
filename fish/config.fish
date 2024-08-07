@@ -23,14 +23,18 @@ if status is-interactive
         alias less='more -e'
     end
 
-    abbr -a -- du-hs 'sudo du -hs * | sort -h'
-    abbr -a -- ff 'find . -name'
-    abbr -a -- tmuxat 'tmux attach || tmux new'
+    abbr -a --set-cursor du-hs 'sudo du -hs %* | sort -h'
+    abbr -a ff 'find . -name'
+    abbr -a tmuxat 'tmux attach || tmux new'
 
     # https://unix.stackexchange.com/a/176331
     function setenv; set -gx $argv; end
     if test -e ~/.env
         source ~/.env
+    end
+
+    if test -f ~/.config/fish/config.fish-local
+        source ~/.config/fish/config.fish-local
     end
 
     # FreeBSD has /home linked to /usr/home, this leads to
