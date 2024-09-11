@@ -11,6 +11,12 @@ function fish_title
         set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
     end
 
-    echo -n -s "$__fish_prompt_hostname:"(fish_prompt_pwd_dir_length=1 prompt_pwd) " | " $argv;
+    if test "$USER" = "meissner"
+        set -g title_user ""
+    else
+        set -g title_user $USER"@"
+    end
+
+    echo -n -s "$title_user$__fish_prompt_hostname:"(fish_prompt_pwd_dir_length=1 prompt_pwd) " | " $argv;
 end
 
