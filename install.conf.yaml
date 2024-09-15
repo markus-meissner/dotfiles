@@ -1,3 +1,5 @@
+---
+
 - clean: []
 
 - create:
@@ -8,6 +10,9 @@
 
 - shell:
     - [ git submodule update --init --recursive, Installing/updating submodules ]
+    -
+      description: Creating ~/.hushlogin
+      command: test "$(uname -s)" = "FreeBSD" && test ! -f ~/.hushlogin && touch ~/.hushlogin || true
     - [ ./install-fzf, Installing fzf (fish only) ]
 
 - link:
@@ -22,14 +27,13 @@
       path: tmux
     ~/.gitconfig: gitconfig
     ~/.vim/autoload/togglebg.vim:
-        path:  vim/autoload/togglebg.vim
-        create: true
+      path: vim/autoload/togglebg.vim
+      create: true
     ~/.vim/bitmaps/togglebg.png:
-        path:  vim/bitmaps/togglebg.png
-        create: true
+      path: vim/bitmaps/togglebg.png
+      create: true
     ~/.vim/colors/solarized.vim:
-        path: vim/colors/solarized.vim
-        create: true
+      path: vim/colors/solarized.vim
+      create: true
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
-
