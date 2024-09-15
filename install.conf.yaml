@@ -8,6 +8,7 @@
 
 - shell:
     - [ git submodule update --init --recursive, Installing/updating submodules ]
+    - [ '[ "$(uname -s)" = "FreeBSD" ] && touch ~/.hushlogin', Creating ~/.hushlogin ]
     - [ ./install-fzf, Installing fzf (fish only) ]
 
 - link:
