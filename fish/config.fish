@@ -6,13 +6,19 @@ if status is-interactive
     set -gx PATH $PATH ~/.local/bin ~/bin
     [ -d /opt/homebrew/bin ] && set -gx PATH $PATH /opt/homebrew/bin
 
-    if command -q vim
-        alias vi=vim
+    if command -q nvim
+        alias v=nvim
+        set -gx EDITOR $(which nvim)
+    else if command -q vim
+        alias v=vim
         set -gx EDITOR $(which vim)
+    else
+        alias v=vi
+        set -gx EDITOR $(which vi)
     end
 
     # https://fishshell.com/docs/current/tutorial.html#conditionals-if-else-switch
-    if command -q less; and test "$(uname | string lower)" != "openbsd"
+    if command -q less; and test "$(uname | string lower)" != openbsd
         # 2024-07-17: Removed -X as I don't know if we need it
         # less on BusyBox only supports -F, not --quit-if-one-screen
         alias less='less -F'
@@ -28,7 +34,9 @@ if status is-interactive
     abbr -a tmuxat 'tmux attach || tmux new'
 
     # https://unix.stackexchange.com/a/176331
-    function setenv; set -gx $argv; end
+    function setenv
+        set -gx $argv
+    end
     if test -e ~/.env
         source ~/.env
     end
@@ -43,4 +51,3 @@ if status is-interactive
         cd
     end
 end
-
