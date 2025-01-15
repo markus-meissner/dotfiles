@@ -4,6 +4,7 @@ if status is-interactive
     # -> see conf.d/0-local.fish for details
 
     set -gx PATH $PATH ~/.local/bin ~/bin
+    [ -d /opt/bin ] && set -gx PATH $PATH /opt/bin
     [ -d /opt/homebrew/bin ] && set -gx PATH $PATH /opt/homebrew/bin
 
     if command -q nvim
