@@ -21,6 +21,10 @@
       create: true
       force: true
       path: fish
+    ~/.config/nvim:
+      create: true
+      force: true
+      path: nvim
     ~/.config/tmux:
       create: true
       force: true
