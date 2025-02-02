@@ -1126,6 +1126,10 @@ require('lazy').setup({
       "ecthelionvi/NeoView.nvim",
       opts = {}
     },
+    {
+      -- Delete instead of cut
+      'svermeulen/vim-cutlass',
+    },
     -- {
     --   "nvim-tree/nvim-tree.lua",
     --   lazy = false,
