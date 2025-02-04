@@ -1130,6 +1130,10 @@ require('lazy').setup({
       -- Delete instead of cut
       'svermeulen/vim-cutlass',
     },
+    {
+      -- Update bind serial
+      "breard-r/vim-dnsserial",
+    },
     -- {
     --   "nvim-tree/nvim-tree.lua",
     --   lazy = false,
