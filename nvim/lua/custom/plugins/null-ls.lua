@@ -1,7 +1,10 @@
 -- Format on save and linters
 -- https://github.com/hendrikmi/dotfiles/blob/main/nvim/lua/plugins/none-ls.lua
 return {
+  -- null-ls.nvim Reloaded, maintained by the community.
+  -- Only the repo name is changed for compatibility concerns. All the API and future changes will keep in place as-is.
   'nvimtools/none-ls.nvim',
+  -- enabled = vim.fn.executable('npm') == 1,
   dependencies = {
     'nvimtools/none-ls-extras.nvim',
     'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
