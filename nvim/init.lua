@@ -914,6 +914,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
+    enabled = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
@@ -940,6 +941,18 @@ require('lazy').setup({
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
 
+      -- Minimal and fast autopairs
+      require('mini.pairs').setup()
+
+      -- Navigate and manipulate file system
+      require('mini.files').setup()
+
+      -- Visualize and work with indent scope
+      require('mini.indentscope').setup()
+
+      -- Fast and flexible start screen / dashboard
+      require('mini.starter').setup()
+
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
@@ -961,6 +974,9 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+
+      -- Work with trailing whitespace
+      require('mini.trailspace').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -1102,8 +1118,8 @@ require('lazy').setup({
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
         bigfile = { enabled = true },
-        dashboard = { enabled = true },
-        indent = { enabled = true },
+        dashboard = { enabled = false }, -- replaced by mini-starter
+        indent = { enabled = false }, -- replaced by mini-indentscope
         input = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
@@ -1166,7 +1182,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  require 'kickstart.plugins.autopairs',
+  -- require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
