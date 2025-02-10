@@ -7,8 +7,13 @@ return {
     opts = { signs = false },
   },
 
-  -- 2025-02-09: Disabled as java and bind zone files have problems
-  -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  { -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-sleuth',
+    config = function()
+      vim.g.sleuth_bindzone_heuristics = 0
+    end,
+  },
+
   {
     'gbprod/cutlass.nvim',
     config = function()
