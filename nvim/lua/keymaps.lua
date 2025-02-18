@@ -39,3 +39,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- Toggle line wrapping
 vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>')
+
+-- Open file under cursor in default app, mainly for opening http links in browser
+-- There is the default binding gx which calls the deactivated netrw
+vim.keymap.set('n', 'go', '<cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = 'Open in default app' })

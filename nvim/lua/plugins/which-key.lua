@@ -78,8 +78,8 @@ return {
           return require("which-key.extras").expand.win()
         end,
       },
-      -- better descriptions
-      { "gx", desc = "Open with system app" },
+      -- better descriptions, but netrw has been deactivated. Use "go" keymap
+      -- { "gx", desc = "Open with system app" },
       },
     },
   }

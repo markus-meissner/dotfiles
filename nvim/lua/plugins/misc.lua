@@ -1,4 +1,12 @@
 return {
+  { -- LSP diagnostics in virtual text at the top right of your screen
+    'dgagn/diagflow.nvim',
+    event = 'LspAttach', -- This is what I use personnally and it works great
+    opts = {
+      scope = 'cursor',
+      show_borders = true,
+    },
+  },
   -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
