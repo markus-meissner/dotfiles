@@ -80,7 +80,7 @@ return {
       },
       -- better descriptions, but netrw has been deactivated. Use "go" keymap
       -- { "gx", desc = "Open with system app" },
+      -- { "gq", desc = "Format current selection (line wrap etc.)", mode = { 'v' } },
       },
     },
   }
-

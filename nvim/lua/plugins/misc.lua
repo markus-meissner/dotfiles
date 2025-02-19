@@ -3,8 +3,9 @@ return {
     'dgagn/diagflow.nvim',
     event = 'LspAttach', -- This is what I use personnally and it works great
     opts = {
+      placement = 'inline',
       scope = 'cursor',
-      show_borders = true,
+      show_borders = false,
     },
   },
   -- Highlight todo, notes, etc in comments
