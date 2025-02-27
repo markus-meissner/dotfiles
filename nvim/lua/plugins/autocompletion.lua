@@ -62,6 +62,11 @@ return { -- Autocompletion
       TypeParameter = '󰊄',
     }
 
+    vim.keymap.set('n', '<leader>cd', function()
+      vim.b.cmp_enabled = not vim.b.cmp_enabled
+      require('cmp').setup.buffer { enabled = vim.b.cmp_enabled }
+    end, { desc = 'disable autocompletion' })
+
     cmp.setup {
       snippet = {
         expand = function(args)
@@ -74,10 +79,13 @@ return { -- Autocompletion
       --     documentation = cmp.config.window.bordered(),
       -- },
       mapping = cmp.mapping.preset.insert {
+        ['<C-,>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-m>'] = cmp.mapping.scroll_docs(4),
         ['<C-j>'] = cmp.mapping.select_next_item(),       -- Select the [n]ext item
         ['<C-k>'] = cmp.mapping.select_prev_item(),       -- Select the [p]revious item
+        ['<C-Space>'] = cmp.mapping.complete {},          -- Manually trigger a completion from nvim-cmp.
+        ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm { select = true }, -- Accept the completion with Enter.
-        ['<C-c>'] = cmp.mapping.complete {},              -- Manually trigger a completion from nvim-cmp.
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
@@ -125,6 +133,7 @@ return { -- Autocompletion
         { name = 'path' },
       },
       formatting = {
+        expandable_indicator = true,
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
           -- Kind icons

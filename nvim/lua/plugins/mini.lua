@@ -1,9 +1,4 @@
-return {
-  -- Collection of various small independent plugins/modules
-  --
-  -- 2025-02-10: Couldn't get the config for mini.files to work here, so it
-  -- has been moved to
-  -- - mini.files.lua
+return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
   config = function()
     -- Better Around/Inside textobjects
@@ -14,10 +9,10 @@ return {
     --  - ci'  - [C]hange [I]nside [']quote
     require('mini.ai').setup { n_lines = 500 }
 
+    -- 2025-02-10: Couldn't get the config for mini.files to work here, so it
+    -- has been moved to `mini-files.lua`
     -- Navigate and manipulate file system
     -- require('mini.files').setup()
-    -- 2025-02-10: Couldn't get the config for mini.files to work here, so it
-    -- has been moved to `mini.files.lua`
 
     -- Visualize and work with indent scope
     require('mini.indentscope').setup()

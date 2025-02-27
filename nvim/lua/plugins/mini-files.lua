@@ -1,5 +1,4 @@
-return {
-  -- Navigate and manipulate file system
+return { -- Navigate and manipulate file system
   'echasnovski/mini.files',
   keys = {
     {
