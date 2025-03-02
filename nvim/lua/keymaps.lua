@@ -42,4 +42,22 @@ vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>')
 
 -- Open file under cursor in default app, mainly for opening http links in browser
 -- There is the default binding gx which calls the deactivated netrw
-vim.keymap.set('n', 'go', '<cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = 'Open in default app' })
+-- https://sbulav.github.io/vim/neovim-opening-github-repos/
+local function url_repo()
+  local cursorword = vim.fn.expand '<cfile>'
+  -- https://onecompiler.com/lua/43aaypgqy
+  if string.find(cursorword, '^[%a%d%-]*/[%a%d%-%.]*$') then
+    cursorword = 'https://github.com/' .. cursorword
+  end
+  return cursorword or ''
+end
+
+local open_command = 'xdg-open'
+if vim.fn.has 'mac' == 1 then
+  open_command = 'open'
+end
+vim.keymap.set('n', 'go', function()
+  vim.fn.jobstart({ open_command, url_repo() }, { detach = true })
+end, { desc = 'Open in default app' })
+
+-- vim.keymap.set('n', 'go', '<cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = 'Open in default app' })

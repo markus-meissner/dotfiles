@@ -19,6 +19,20 @@ return {
       lsp_doc_border = false, -- add a border to hover docs and signature help
     },
   },
+  config = function()
+    -- Show macro recording, see https://github.com/folke/noice.nvim/wiki/Configuration-Recipes#show-recording-messages
+    -- Showing macro recording in mini.statusline:
+    -- https://www.reddit.com/r/neovim/comments/1djkwif/show_recording_macros_message_in_ministatusline/
+    local noice = require 'noice'
+    noice.setup {
+      routes = {
+        {
+          view = 'notify',
+          filter = { event = 'msg_showmode' },
+        },
+      },
+    }
+  end,
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     'MunifTanjim/nui.nvim',

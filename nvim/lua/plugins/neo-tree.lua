@@ -11,9 +11,9 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    { '<leader>ff', ':Neotree float<CR>', desc = 'Open [N]eotree [f]loat' },
-    { '<leader>fn', ':Neotree current<CR>', desc = 'Open [N]eotree [c]urrent' },
+    { '\\',         ':Neotree reveal<CR>',  desc = 'NeoTree reveal',          silent = true },
+    { '<leader>fc', ':Neotree current<CR>', desc = 'Open [N]eotree [c]urrent' },
+    { '<leader>ff', ':Neotree float<CR>',   desc = 'Open [N]eotree [f]loat' },
   },
   opts = {
     filesystem = {
