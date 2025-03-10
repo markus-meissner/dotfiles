@@ -7,16 +7,7 @@ if status is-interactive
     [ -d /opt/bin ] && set -gx PATH $PATH /opt/bin
     [ -d /opt/homebrew/bin ] && set -gx PATH $PATH /opt/homebrew/bin
 
-    if command -q nvim
-        alias v=nvim
-        set -gx EDITOR $(which nvim)
-    else if command -q vim
-        alias v=vim
-        set -gx EDITOR $(which vim)
-    else
-        alias v=vi
-        set -gx EDITOR $(which vi)
-    end
+    [ -f /usr/bin/fdfind ] && alias fd=fdfind
 
     # https://fishshell.com/docs/current/tutorial.html#conditionals-if-else-switch
     if command -q less; and test "$(uname | string lower)" != openbsd
@@ -28,6 +19,17 @@ if status is-interactive
         # wildly, so simply use more on OpenBSD
         # On OpenBSD more only supports -e, not --quit-at-eof
         alias less='more -e'
+    end
+
+    if command -q nvim
+        alias v=nvim
+        set -gx EDITOR $(which nvim)
+    else if command -q vim
+        alias v=vim
+        set -gx EDITOR $(which vim)
+    else
+        alias v=vi
+        set -gx EDITOR $(which vi)
     end
 
     abbr -a --set-cursor du-hs 'sudo du -hs %* | sort -h'

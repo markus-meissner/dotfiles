@@ -16,6 +16,7 @@ end
 # https://fishshell.com/docs/current/cmds/fish_git_prompt.html
 set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_showcolorhints 1
+set -g __fish_git_prompt_showuntrackedfiles 1
 set -g __fish_git_prompt_char_stateseparator ' '
 set -g __fish_git_prompt_color_branch normal
 set -g __fish_git_prompt_color_cleanstate green
