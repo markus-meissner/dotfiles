@@ -17,7 +17,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
--- vim.opt.mouse = ''
+if vim.fn.has 'mac' == 0 then
+  vim.opt.mouse = ''
+end
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
