@@ -1,11 +1,11 @@
 return {
-  {
+  { -- Update bind zone serial automatically
     'breard-r/vim-dnsserial',
   },
 
   { -- LSP diagnostics in virtual text at the top right of your screen
     'dgagn/diagflow.nvim',
-    event = 'LspAttach', -- This is what I use personnally and it works great
+    event = 'LspAttach',
     opts = {
       placement = 'inline',
       scope = 'cursor',
@@ -13,10 +13,23 @@ return {
     },
   },
 
+  -- Save and restore cursor position plugins
+  -- [defaults: restore cursor position when opening a file · Issue #16339 · neovim/neovim · GitHub](https://github.com/neovim/neovim/issues/16339)
+  --
+  -- { -- Save and restore cursor position
+  -- Using this plugin leads to the problem that live_grep doesn't take us to the right line:
+  -- [Telescope doesn&#39;t bring me to the grepped line. · Issue #2 · ecthelionvi/NeoView.nvim · GitHub](https://github.com/ecthelionvi/NeoView.nvim/issues/2)
+  --   'ecthelionvi/NeoView.nvim',
+  --   opts = {},
+  -- },
+
   { -- Save and restore cursor position
-    'ecthelionvi/NeoView.nvim',
-    opts = {},
+    'ethanholz/nvim-lastplace',
+    config = function()
+      require('nvim-lastplace').setup {}
+    end,
   },
+  -- /Save and restore cursor position plugins
 
   { -- Highlight todo, notes, etc in comments
     'folke/todo-comments.nvim',
@@ -72,7 +85,8 @@ return {
     ---@module "auto-session"
     ---@type AutoSession.Config
     opts = {
-      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+      allowed_dirs = { '~/dev/*' },
+      -- suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
       -- log_level = 'debug',
     },
   },
