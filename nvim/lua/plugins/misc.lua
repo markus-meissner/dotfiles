@@ -3,14 +3,27 @@ return {
     'breard-r/vim-dnsserial',
   },
 
-  { -- LSP diagnostics in virtual text at the top right of your screen
-    'dgagn/diagflow.nvim',
-    event = 'LspAttach',
-    opts = {
-      placement = 'inline',
-      scope = 'cursor',
-      show_borders = false,
-    },
+  -- { -- LSP diagnostics in virtual text at the top right of your screen
+  --   'dgagn/diagflow.nvim',
+  --   event = 'LspAttach',
+  --   opts = {
+  --     placement = 'inline',
+  --     scope = 'cursor',
+  --     show_borders = false,
+  --   },
+  -- },
+
+  { -- LSP diagnostics in virtual lines
+    -- This plugin is included in neovim 0.11, see
+    -- https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    enabled = vim.fn.has 'nvim-0.11' == 0,
+    config = function()
+      -- require('lsp_lines').setup {}
+      vim.diagnostic.config {
+        virtual_text = false,
+      }
+    end,
   },
 
   -- Save and restore cursor position plugins
