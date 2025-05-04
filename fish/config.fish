@@ -23,13 +23,15 @@ if status is-interactive
 
     if command -q nvim
         alias v=nvim
-        set -gx EDITOR $(which nvim)
+        # 2025-04-07: Switched from full path to name for lazygit
+        # set -gx EDITOR $(which nvim)
+        set -gx EDITOR nvim
     else if command -q vim
         alias v=vim
-        set -gx EDITOR $(which vim)
+        set -gx EDITOR vim
     else
         alias v=vi
-        set -gx EDITOR $(which vi)
+        set -gx EDITOR vi
     end
 
     abbr -a --set-cursor du-hs 'sudo du -hs %* | sort -h'
