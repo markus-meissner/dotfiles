@@ -80,3 +80,29 @@ vim.opt.softtabstop = 4
 
 -- vim.o.wrap = false -- display lines as one long line
 -- vim.o.linebreak = true -- companion to wrap don't split words
+
+-- Folds ======================================================================
+-- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+if vim.fn.has 'nvim-0.10' == 1 then
+  -- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+  -- vim.o.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+  -- vim.o.foldmethod = 'expr'
+  -- 2025-05-04: Currently indent seem to work for all my usecases
+  vim.o.foldmethod = 'indent'
+  vim.o.foldtext = '' -- Use underlying text with its highlighting
+else
+  vim.o.foldmethod = 'indent'
+  vim.o.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+end
+
+vim.o.foldlevel = 99       -- Open all folds by default
+-- vim.o.foldnestmax = 10      -- Create folds only for some number of nested levels
+vim.g.markdown_folding = 1 -- Use folding by heading in markdown files
+
+-- Virtual lines ==============================================================
+-- lsp_lines.nvim is included in nvim-0.11, enable it
+if vim.fn.has 'nvim-0.11' == 1 then
+  vim.diagnostic.config {
+    virtual_lines = true,
+  }
+end
