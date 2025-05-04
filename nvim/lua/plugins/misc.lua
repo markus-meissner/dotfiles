@@ -1,5 +1,5 @@
 return {
-  { -- Update bind zone serial automatically
+  { -- Update bind zone serial automatically ===================================
     'breard-r/vim-dnsserial',
   },
 
@@ -13,7 +13,7 @@ return {
   --   },
   -- },
 
-  { -- LSP diagnostics in virtual lines
+  { -- LSP diagnostics in virtual lines ========================================
     -- This plugin is included in neovim 0.11, see
     -- https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
@@ -74,20 +74,33 @@ return {
     },
   },
 
-  { -- Find and replace
-    'MagicDuck/grug-far.nvim',
-    config = function()
-      require('grug-far').setup {
-        -- options, see Configuration section below
-        -- there are no required options atm
-        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
-      }
-    end,
+  -- 2025-03-27: Never used, disabled for now.
+  -- { -- Find and replace
+  --   'MagicDuck/grug-far.nvim',
+  --   config = function()
+  --     require('grug-far').setup {
+  --       -- options, see Configuration section below
+  --       -- there are no required options atm
+  --       -- engine = 'ripgrep' is default, but 'astgrep' can be specified
+  --     }
+  --   end,
+  -- },
+
+  { -- java
+    'mfussenegger/nvim-jdtls',
   },
 
-  {
-    -- java
-    'mfussenegger/nvim-jdtls',
+  { -- Status line ============================================================
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup {
+        options = {
+          -- Supports `background` option
+          theme = 'gruvbox',
+        },
+      }
+    end,
   },
 
   { -- automatic session management
@@ -98,10 +111,15 @@ return {
     ---@module "auto-session"
     ---@type AutoSession.Config
     opts = {
-      allowed_dirs = { '~/dev/*' },
+      allowed_dirs = { '~/dev/*', '~/Desktop/*' },
       -- suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
       -- log_level = 'debug',
     },
+  },
+
+  { -- Marks
+    'ThePrimeagen/harpoon',
+    dependencies = { 'nvim-lua/plenary.nvim' },
   },
 
   { -- Detect tabstop and shiftwidth automatically

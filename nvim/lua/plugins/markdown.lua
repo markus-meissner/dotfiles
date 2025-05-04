@@ -2,7 +2,7 @@ return {
 
   -- See lint.lua for autocmd
 
-  {
+  { -- automated bullet lists including toggle for checkbox ===================
     'bullets-vim/bullets.vim',
     -- We format the buffer on save (see lint.lua), there we get indent off
     -- list items.
@@ -26,6 +26,7 @@ return {
   --   end,
   -- },
 
+  -- Markdown renderer ========================================================
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
