@@ -23,7 +23,7 @@ return { -- LSP Plugins
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -77,7 +77,11 @@ return { -- LSP Plugins
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          -- nvim-0.11 - map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          map('gra', vim.lsp.buf.code_action, 'code [A]ction')
+          map('gri', vim.lsp.buf.implementation, '[I]mplementation')
+          map('grn', vim.lsp.buf.rename, 're[n]ame')
+          map('grr', vim.lsp.buf.references, '[R]eferences')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
@@ -98,7 +102,7 @@ return { -- LSP Plugins
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          -- nvim-0.11 - nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
