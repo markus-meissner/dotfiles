@@ -96,8 +96,22 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          -- Supports `background` option
-          theme = 'gruvbox',
+          -- this uses the configured colorscheme if installed
+          theme = 'solarized',
+          -- this uses solarized from lualine
+          -- theme = require 'lualine.themes.solarized',
+        },
+        -- Show abbreviated mode
+        sections = {
+          lualine_a = {
+            {
+              'mode',
+              fmt = function(str)
+                return str:sub(1, 1)
+              end,
+              -- icon = '',
+            },
+          },
         },
       }
     end,
