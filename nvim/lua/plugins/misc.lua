@@ -13,19 +13,6 @@ return {
   --   },
   -- },
 
-  { -- LSP diagnostics in virtual lines ========================================
-    -- This plugin is included in neovim 0.11, see
-    -- https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines
-    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-    enabled = vim.fn.has 'nvim-0.11' == 0,
-    config = function()
-      -- require('lsp_lines').setup {}
-      vim.diagnostic.config {
-        virtual_text = false,
-      }
-    end,
-  },
-
   -- Save and restore cursor position plugins
   -- [defaults: restore cursor position when opening a file · Issue #16339 · neovim/neovim · GitHub](https://github.com/neovim/neovim/issues/16339)
   --
@@ -42,7 +29,6 @@ return {
       require('nvim-lastplace').setup {}
     end,
   },
-  -- /Save and restore cursor position plugins
 
   { -- Highlight todo, notes, etc in comments
     'folke/todo-comments.nvim',
@@ -56,6 +42,32 @@ return {
     config = function()
       require('cutlass').setup {
         cut_key = 'm',
+      }
+    end,
+  },
+
+  { -- LSP diagnostics in virtual lines ========================================
+    -- This plugin is included in neovim 0.11, see
+    -- https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    enabled = vim.fn.has 'nvim-0.11' == 0,
+    config = function()
+      -- require('lsp_lines').setup {}
+      vim.diagnostic.config {
+        virtual_text = false,
+      }
+    end,
+  },
+
+  -- Surround selections, stylishly ===========================================
+  -- Replaced mini.surround as it works out of the box
+  {
+    'kylechui/nvim-surround',
+    -- version = '^3.0.0', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+    config = function()
+      require('nvim-surround').setup {
+        -- Configuration here, or leave empty to use defaults
       }
     end,
   },

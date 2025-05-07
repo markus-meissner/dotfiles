@@ -49,7 +49,9 @@ return { -- Collection of various small independent plugins/modules
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
-    require('mini.surround').setup()
+    -- 2025-05-06: Didn't work as expected, probably because of me not
+    -- understanding it or wrong keymaps. Replaced by 'kylechui/nvim-surround'.
+    -- require('mini.surround').setup()
 
     -- Simple and easy statusline.
     -- 2025-05-04: Switched to lualine as I don't want to see the buffer size
