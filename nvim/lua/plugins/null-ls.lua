@@ -2,16 +2,17 @@
 -- https://github.com/hendrikmi/dotfiles/blob/main/nvim/lua/plugins/none-ls.lua
 return {
   -- null-ls.nvim Reloaded, maintained by the community.
-  -- Only the repo name is changed for compatibility concerns. All the API and future changes will keep in place as-is.
+  -- Only the repo name is changed for compatibility concerns.
+  -- All the API and future changes will keep in place as-is.
   'nvimtools/none-ls.nvim',
-  enabled = vim.fn.executable('npm') == 1,
+  enabled = vim.fn.executable 'npm' == 1,
   dependencies = {
     'nvimtools/none-ls-extras.nvim',
     'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
   },
   config = function()
     local null_ls = require 'null-ls'
-    local formatting = null_ls.builtins.formatting -- to setup formatters
+    local formatting = null_ls.builtins.formatting   -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
     -- list of formatters & linters for mason to install
@@ -19,10 +20,10 @@ return {
       ensure_installed = {
         'checkmake',
         'prettier', -- ts/js formatter
-        'stylua', -- lua formatter
+        'stylua',   -- lua formatter
         'eslint_d', -- ts/js linter
         'shfmt',
-        'ruff', -- Python linter and code formatter
+        'ruff',     -- Python linter and code formatter
       },
       -- auto-install configured formatters & linters (with null-ls)
       automatic_installation = true,
@@ -30,7 +31,9 @@ return {
 
     local sources = {
       diagnostics.checkmake,
-      formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown' } },
+      -- 2025-05-07: Disable formatting (on save) for html files
+      -- formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown' } },
+      formatting.prettier.with { filetypes = { 'json', 'yaml', 'markdown' } },
       formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },
       formatting.terraform_fmt,

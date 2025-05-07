@@ -145,6 +145,7 @@ return {
 
   { -- Marks
     'ThePrimeagen/harpoon',
+    enabled = vim.fn.has 'mac' == 1,
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
 
