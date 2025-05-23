@@ -264,7 +264,9 @@ return { -- LSP Plugins
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
-      if vim.fn.has 'macunix' == 1 or vim.loop.os_uname().sysname == 'Linux' then
+      if vim.fn.executable('unzip') == 1
+        and (vim.fn.has 'macunix' == 1
+          or vim.loop.os_uname().sysname == 'Linux') then
         vim.list_extend(ensure_installed, {
           -- stylua does currently not support FreeBSD
           'stylua', -- Used to format Lua code

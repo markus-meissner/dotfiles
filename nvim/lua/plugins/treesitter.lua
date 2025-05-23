@@ -1,5 +1,7 @@
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
+  -- No C compiler found! "cc", "gcc", "clang", "cl", "zig" are not executable.
+  enabled = vim.fn.executable('cc') == 1 or vim.fn.executable('gcc') == 1,
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
