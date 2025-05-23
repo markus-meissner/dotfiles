@@ -30,6 +30,11 @@ return {
     end,
   },
 
+  -- navigate your code with search labels, enhanced character motions ========
+  -- {
+  --   'folke/flash.nvim',
+  -- },
+
   { -- Highlight todo, notes, etc in comments
     'folke/todo-comments.nvim',
     event = 'VimEnter',
@@ -60,14 +65,39 @@ return {
   },
 
   -- Surround selections, stylishly ===========================================
-  -- Replaced mini.surround as it works out of the box
+  --
+  -- Use `(` if you want to add spaces, use `)` for no spaces.
+  --
+  --     Old text                    Command         New text
+  -- -----------------------------------------------------------------
+  -- surr*ound_words             ysiw)           (surround_words)
+  -- *make strings               ys$"            "make strings"
+  -- [delete ar*ound me!]        ds]             delete around me!
+  -- remove <b>HTML t*ags</b>    dst             remove HTML tags
+  -- 'change quot*es'            cs'"            "change quotes"
+  -- <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+  -- delete(functi*on calls)     dsf             function calls
+  --
+  -- https://github.com/kylechui/nvim-surround/blob/main/doc/nvim-surround.txt
   {
     'kylechui/nvim-surround',
     -- version = '^3.0.0', -- Use for stability; omit to use `main` branch for the latest features
     event = 'VeryLazy',
     config = function()
       require('nvim-surround').setup {
-        -- Configuration here, or leave empty to use defaults
+        keymaps = {
+          insert = '<C-g>s',
+          insert_line = '<C-g>S',
+          normal = 'sa',
+          normal_cur = 'yss',
+          normal_line = 'yS',
+          normal_cur_line = 'ySS',
+          visual = 'S',
+          visual_line = 'gS',
+          delete = 'sd',
+          change = 'sc',
+          change_line = 'sC',
+        },
       }
     end,
   },

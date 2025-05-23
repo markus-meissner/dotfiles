@@ -49,8 +49,7 @@ return { -- Collection of various small independent plugins/modules
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
-    -- 2025-05-06: Didn't work as expected, probably because of me not
-    -- understanding it or wrong keymaps. Replaced by 'kylechui/nvim-surround'.
+    -- Replaced by 'kylechui/nvim-surround'.
     -- require('mini.surround').setup()
 
     -- Simple and easy statusline.
@@ -69,7 +68,8 @@ return { -- Collection of various small independent plugins/modules
     -- end
 
     -- Work with trailing whitespace
-    require('mini.trailspace').setup()
+    -- 2025-05-08: Most linters take care, so disabled
+    -- require('mini.trailspace').setup()
 
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim

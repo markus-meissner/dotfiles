@@ -26,6 +26,12 @@ return {
   --   end,
   -- },
 
+  -- Follow links in markdown==================================================
+  {
+    'jghauser/follow-md-links.nvim',
+    enabled = vim.fn.has 'mac' == 1,
+  },
+
   -- Markdown renderer ========================================================
   {
     'MeanderingProgrammer/render-markdown.nvim',
@@ -45,9 +51,12 @@ return {
   {
     'tadmccorkle/markdown.nvim',
     ft = 'markdown', -- or 'event = "VeryLazy"'
-    -- TODO: As with 'bullets-vim/bullets.vim' this plugin also doesn't work for extending lists.
     config = function()
-      require('markdown').setup()
+      require('markdown').setup {
+        mappings = {
+          link_add = '<leader>cl', -- (string|boolean) add link
+        },
+      }
     end,
     opts = {
       on_attach = function(bufnr)
@@ -60,7 +69,7 @@ return {
       end,
     },
     keys = {
-      { '<leader>ct', '<Cmd>MDTaskToggle<CR>', desc = 'Markdown [t]oggle checkbox' },
+      { '<leader>ct', '<Cmd>MDTaskToggle<CR>',    desc = 'Markdown [t]oggle checkbox' },
       { '<leader>ci', '<Cmd>MDListItemBelow<CR>', desc = 'Markdown list item' },
     },
   },
