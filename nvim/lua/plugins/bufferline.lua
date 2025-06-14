@@ -41,6 +41,8 @@ return {
         -- show_close_icon = true,
         -- persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
         -- separator_style = { '│', '│' }, -- | "thick" | "thin" | { 'any', 'any' },
+        -- separator_style = 'slant', -- :h bufferline-styling
+        -- separator_style = 'slope', -- :h bufferline-styling
         -- enforce_regular_tabs = true,
         -- always_show_bufferline = true,
         -- show_tab_indicators = false,

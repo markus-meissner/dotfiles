@@ -12,19 +12,32 @@ return {
   },
   config = function()
     local null_ls = require 'null-ls'
-    local formatting = null_ls.builtins.formatting   -- to setup formatters
+    local formatting = null_ls.builtins.formatting -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
     -- list of formatters & linters for mason to install
+    local formatters = {
+      'checkmake',
+      'prettier', -- ts/js formatter
+      -- 'stylua',   -- lua formatter
+      'eslint_d', -- ts/js linter
+      'shfmt',
+    }
+    if vim.fn.executable 'unzip' == 1 and (vim.fn.has 'macunix' == 1 or vim.loop.os_uname().sysname == 'Linux') then
+      vim.list_extend(formatters, {
+        -- stylua does currently not support FreeBSD
+        'stylua', -- Used to format Lua code
+      })
+    end
+    if vim.fn.has 'macunix' == 1 then
+      vim.list_extend(formatters, {
+        -- ruff requires python3-venv on Debian. Add a matching check it needed.
+        'ruff', -- Python linter and code formatter
+      })
+    end
+
     require('mason-null-ls').setup {
-      ensure_installed = {
-        'checkmake',
-        'prettier', -- ts/js formatter
-        'stylua',   -- lua formatter
-        'eslint_d', -- ts/js linter
-        'shfmt',
-        'ruff',     -- Python linter and code formatter
-      },
+      ensure_installed = formatters,
       -- auto-install configured formatters & linters (with null-ls)
       automatic_installation = true,
     }
@@ -37,9 +50,14 @@ return {
       formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },
       formatting.terraform_fmt,
-      require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
-      require 'none-ls.formatting.ruff_format',
     }
+    if vim.fn.has 'macunix' == 1 then
+      vim.list_extend(sources, {
+        -- see above
+        require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
+        require 'none-ls.formatting.ruff_format',
+      })
+    end
 
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
     null_ls.setup {
