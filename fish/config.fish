@@ -33,6 +33,7 @@ if status is-interactive
     end
 
     abbr -a --set-cursor du-hs 'sudo du -hs %* | sort -h'
+    abbr -a fd 'fd -u'
     abbr -a ff 'find . -name'
     abbr -a tmuxat 'tmux attach || tmux new'
 
