@@ -11,7 +11,7 @@ function fish_title
         set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
     end
 
-    if test "$USER" = "meissner"
+    if test "$USER" = "meissner" -o "$USER" = "mmeissner"
         set -g title_user ""
     else
         set -g title_user $USER"@"
