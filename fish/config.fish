@@ -35,6 +35,7 @@ if status is-interactive
     abbr -a --set-cursor du-hs 'sudo du -hs %* | sort -h'
     abbr -a fd 'fd -u'
     abbr -a ff 'find . -name'
+    abbr -a rg 'rg --smart-case'
     abbr -a tmuxat 'tmux attach || tmux new'
 
     # https://unix.stackexchange.com/a/176331
