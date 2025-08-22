@@ -8,7 +8,7 @@ return {
   enabled = vim.fn.executable 'npm' == 1,
   dependencies = {
     'nvimtools/none-ls-extras.nvim',
-    'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
+    'jay-babu/mason-null-ls.nvim', -- ensure dependencies are installed
   },
   config = function()
     local null_ls = require 'null-ls'
@@ -17,16 +17,14 @@ return {
 
     -- list of formatters & linters for mason to install
     local formatters = {
-      'checkmake',
       'prettier', -- ts/js formatter
-      -- 'stylua',   -- lua formatter
       'eslint_d', -- ts/js linter
-      'shfmt',
     }
     if vim.fn.executable 'unzip' == 1 and (vim.fn.has 'macunix' == 1 or vim.loop.os_uname().sysname == 'Linux') then
       vim.list_extend(formatters, {
-        -- stylua does currently not support FreeBSD
+        'checkmake',
         'stylua', -- Used to format Lua code
+        'shfmt',  -- A shell parser, formatter, and interpreter
       })
     end
     if vim.fn.has 'macunix' == 1 then

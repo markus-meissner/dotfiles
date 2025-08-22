@@ -86,6 +86,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
       builtin.buffers {
         sort_mru = true,
         ignore_current_buffer = true,
+        layout_strategy = 'vertical',
+        layout_config = {
+          vertical = {
+            preview_height = 0.5,
+            mirror = false,
+          },
+        },
       }
     end, { desc = '[ ] Find existing buffers' })
 
