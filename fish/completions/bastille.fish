@@ -19,6 +19,7 @@ complete -c bastille -f -n '__fish_use_subcommand' -a 'limits' -d 'Apply resourc
 complete -c bastille -f -n '__fish_use_subcommand' -a 'list' -d 'List jails'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'pkg' -d 'Manage packages in jail'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'restart' -d 'Restart a jail'
+complete -c bastille -f -n '__fish_use_subcommand' -a 'rdr' -d 'Redirect host port to jail port'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'service' -d 'Manage services in jail'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'start' -d 'Start a jail'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'stop' -d 'Stop a jail'
@@ -46,6 +47,11 @@ function __bastille_commandline_count
     test (count (commandline -xpc)) -eq $argv
 end
 
+function __bastille_templates
+    cd /usr/local/bastille/templates/
+    path dirname */*/Bastillefile
+end
+
 # Bootstrap options
 complete -c bastille -f -n '__fish_seen_subcommand_from bootstrap' -s h -l help -d 'Show help'
 
@@ -57,21 +63,24 @@ complete -c bastille -f -n '__fish_seen_subcommand_from list' -s j -l jails -d '
 complete -c bastille -f -n '__fish_seen_subcommand_from config' -a 'get set remove' -d 'Config operation'
 
 # Service operations
-function __jail_print_service_names
+function __bastille_print_service_name
     set -l cmd (commandline -opc)
     runasroot service -j $cmd[3] -l
 end
 
 # Service completion: First jail name, then service operations
 complete -c bastille -f -n '__fish_seen_subcommand_from service; and __bastille_commandline_count 2' -a '(__bastille_jails)' -d 'Jail'
-complete -c bastille -f -n '__fish_seen_subcommand_from service; and __bastille_commandline_count 3' -a '(__jail_print_service_names)' -d 'Service'
+complete -c bastille -f -n '__fish_seen_subcommand_from service; and __bastille_commandline_count 3' -a '(__bastille_print_service_name)' -d 'Service'
 complete -c bastille -f -n '__fish_seen_subcommand_from service; and __bastille_commandline_count 4' -a 'start stop restart status enable disable' -d 'Service operation'
 
 # Pkg operations
 complete -c bastille -f -n '__fish_seen_subcommand_from pkg' -a 'install remove update upgrade search info' -d 'Package operation'
 
+# template operations
+complete -c bastille -f -n '__fish_seen_subcommand_from template' -a '(__bastille_templates)' -d 'Template'
+
 # Complete jail names for commands that need them
-complete -c bastille -f -n '__fish_seen_subcommand_from clone cmd config console destroy edit export htop limits pkg restart start stop template top update upgrade' -a '(__bastille_jails)' -d 'Jail'
+complete -c bastille -f -n '__fish_seen_subcommand_from clone cmd config console destroy edit export htop limits pkg restart rdr start stop template top update upgrade' -a '(__bastille_jails)' -d 'Jail'
 
 # Global options
 complete -c bastille -f -s h -l help -d 'Show help'
