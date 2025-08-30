@@ -146,7 +146,7 @@ return { -- LSP Plugins
           --
           -- This may be unwanted, since they displace some of your code
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>th', function()
+            map('<leader>ch', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
@@ -212,6 +212,24 @@ return { -- LSP Plugins
       }
       if vim.fn.has 'macunix' == 1 then
         servers['ansiblels'] = {}
+
+        -- LTEX+ Language Server, grammar and spell check
+        -- vim.lsp.config('ltex_plus', {
+        --   settings = {
+        --     ltex = {
+        --       checkFrequency = 'save',
+        --       -- enabled = { 'markdown', 'plaintex', 'rst', 'tex', 'latex' },
+        --       enabled = false,
+        --       -- https://ltex-plus.github.io/ltex-plus/settings.html#ltexlanguage
+        --       -- Use a specific variant like "en-US" or "de-DE" instead of the
+        --       -- generic language code like "en" or "de" to obtain spelling
+        --       -- corrections (in addition to grammar corrections).
+        --       -- language = 'de-DE',
+        --       -- language = 'en-EN',
+        --       -- <!-- LTeX: language=de-DE -->
+        --     },
+        --   },
+        -- })
       end
       if vim.fn.has 'macunix' == 1 or vim.loop.os_uname().sysname == 'Linux' then
         -- LuaLS does currently not support FreeBSD
@@ -264,9 +282,7 @@ return { -- LSP Plugins
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
-      if vim.fn.executable('unzip') == 1
-        and (vim.fn.has 'macunix' == 1
-          or vim.loop.os_uname().sysname == 'Linux') then
+      if vim.fn.executable 'unzip' == 1 and (vim.fn.has 'macunix' == 1 or vim.loop.os_uname().sysname == 'Linux') then
         vim.list_extend(ensure_installed, {
           -- stylua does currently not support FreeBSD
           'stylua', -- Used to format Lua code

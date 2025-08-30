@@ -35,7 +35,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Toggle line wrapping
-vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>')
+vim.keymap.set('n', '<leader>bw', '<cmd>set wrap!<CR>')
 
 -- Open file under cursor in default app, mainly for opening http links in browser
 -- There is the default binding gx which calls the deactivated netrw
@@ -58,3 +58,16 @@ vim.keymap.set('n', 'go', function()
 end, { desc = 'Open in default app' })
 
 -- vim.keymap.set('n', 'go', '<cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = 'Open in default app' })
+
+-- vim.keymap.set('n', '<leader>ll', function()
+--   vim.lsp.enable('ltex_plus', not vim.lsp.is_enabled 'ltex_plus')
+--   print(vim.lsp.is_enabled 'ltex_plus')
+--   local clients = vim.lsp.get_clients { buffer = 0 }
+--   for _, client in ipairs(clients) do
+--     if client.name == 'ltex_plus' then
+--       print 'Found ltex-ls'
+--       client.config.settings.enable = true
+--       -- vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = client.config.settings })
+--     end
+--   end
+-- end, { desc = 'Toggle LTeX LSP' })
