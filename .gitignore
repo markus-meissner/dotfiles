@@ -2,3 +2,4 @@ fish/config.fish-local
 fzf
 .selfupdate-disabled
 .selfupdate-timestamp
+nvim/spell
