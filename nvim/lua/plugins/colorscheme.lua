@@ -18,18 +18,36 @@ return {
   --   end,
   -- },
 
+  -- { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  -- {
+  --   'loctvl842/monokai-pro.nvim',
+  --   enabled = false,
+  --   config = function()
+  --     require('monokai-pro').setup {
+  --       day_night = {
+  --         enable = true, -- turn off by default
+  --         day_filter = 'light', -- classic | octagon | pro | machine | ristretto | spectrum
+  --         night_filter = 'classic', -- classic | octagon | pro | machine | ristretto | spectrum
+  --       },
+  --     }
+  --     vim.cmd.colorscheme 'monokai-pro'
+  --   end,
+  -- },
+  -- { 'rose-pine/neovim' },
+
   {
     'maxmx03/solarized.nvim',
+    enabled = true,
     lazy = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
     ---@type solarized.config
     opts = {
       -- palette = 'selenized',
       -- variant = 'winter',
+      -- 2025-08-24: Tried to change the background color, did't sucseed.
     },
     config = function(_, opts)
       vim.o.termguicolors = true
-      -- vim.o.background = 'light'
       require('solarized').setup(opts)
       vim.cmd.colorscheme 'solarized'
     end,
