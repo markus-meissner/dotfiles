@@ -173,10 +173,39 @@ return {
     },
   },
 
-  { -- Marks
-    'ThePrimeagen/harpoon',
+  -- Autoclose buffers / tabs =================================================
+  {
+    'sontungexpt/buffer-closer',
     enabled = vim.fn.has 'mac' == 1,
+    event = 'VeryLazy',
+    config = function()
+      require('buffer-closer').setup {
+        min_remaining_buffers = 5,
+        excluded = {
+          filenames = { 'Wochenziele.md' },
+        },
+      }
+    end,
+  },
+
+  -- Marks ====================================================================
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    enabled = false,
+    --enabled = vim.fn.has 'mac' == 1,
     dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local harpoon = require 'harpoon'
+      harpoon:setup {}
+      --vim.keymap.set('n', '<leader>M', function()
+      --  harpoon.ui:toggle_quick_menu(harpoon:list())
+      --end)
+
+      --vim.keymap.set('n', '<leader>m', function()
+      --  harpoon:list():add()
+      --end)
+    end,
   },
 
   { -- Detect tabstop and shiftwidth automatically
