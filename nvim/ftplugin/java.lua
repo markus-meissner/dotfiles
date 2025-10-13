@@ -1,3 +1,9 @@
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.smarttab = true
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
+
 -- https://github.com/mfussenegger/nvim-jdtls
 --
 -- Examples:
@@ -6,8 +12,6 @@
 -- https://github.com/gbroques/neovim-configuration/blob/master/ftplugin/java.lua
 
 local jdtls = require 'jdtls'
-
--- vim.o.tabstop = 4
 
 local config = {
   cmd = { '/opt/homebrew/bin/jdtls' },
@@ -22,7 +26,8 @@ local config = {
   on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>co', jdtls.organize_imports, { desc = 'Organize imports', buffer = bufnr })
     vim.keymap.set('n', '<leader>cv', jdtls.extract_variable_all, { desc = 'Extract variable', buffer = bufnr })
-    vim.keymap.set('v', '<leader>cm', "<CMD>lua require('jdtls').extract_method(true)<CR>", { desc = 'Extract method', buffer = bufnr })
+    vim.keymap.set('v', '<leader>cm', "<CMD>lua require('jdtls').extract_method(true)<CR>",
+      { desc = 'Extract method', buffer = bufnr })
     vim.keymap.set('n', '<leader>cc', jdtls.extract_constant, { desc = 'Extract constant', buffer = bufnr })
     -- 2025-02-12: Tried to force a gradle build - doesn't work
     -- vim.api.nvim_create_autocmd('BufWritePost', {
