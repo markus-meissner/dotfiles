@@ -26,7 +26,61 @@ return {
   --   end,
   -- },
 
-  -- Follow links in markdown==================================================
+  -- Automatic list continuation and formatting ===============================
+  {
+    'gaoDean/autolist.nvim',
+    ft = {
+      'markdown',
+    },
+    config = function()
+      require('autolist').setup()
+
+      vim.keymap.set('i', '<tab>', '<cmd>AutolistTab<cr>')
+      vim.keymap.set('i', '<s-tab>', '<cmd>AutolistShiftTab<cr>')
+      -- vim.keymap.set("i", "<c-t>", "<c-t><cmd>AutolistRecalculate<cr>") -- an example of using <c-t> to indent
+      vim.keymap.set('i', '<CR>', '<CR><cmd>AutolistNewBullet<cr>')
+      vim.keymap.set('n', 'o', 'o<cmd>AutolistNewBullet<cr>')
+      vim.keymap.set('n', 'O', 'O<cmd>AutolistNewBulletBefore<cr>')
+      -- 2025-10-06: This doesn't work for unknown reasons
+      vim.keymap.set('n', '<CR>', '<cmd>AutolistToggleCheckbox<CR><CR>')
+      vim.keymap.set('n', '<leader>ct', '<cmd>AutolistToggleCheckbox<CR><CR>')
+      vim.keymap.set('n', 't', '<cmd>AutolistToggleCheckbox<CR><CR>')
+      -- vim.keymap.set('n', '<leader>ct', '<cmd>AutolistToggleCheckbox<CR><CR>', desc = 'Markdown [t]oggle checkbox')
+
+      vim.keymap.set('n', '<CR>', '<cmd>AutolistToggleCheckbox<CR><CR>')
+      -- vim.keymap.set('n', '<C-r>', '<cmd>AutolistRecalculate<cr>')
+
+      -- cycle list types with dot-repeat
+      -- vim.keymap.set('n', '<leader>cn', require('autolist').cycle_next_dr, { expr = true })
+      -- vim.keymap.set('n', '<leader>cp', require('autolist').cycle_prev_dr, { expr = true })
+      -- if you don't want dot-repeat
+      -- vim.keymap.set("n", "<leader>cn", "<cmd>AutolistCycleNext<cr>")
+      -- vim.keymap.set("n", "<leader>cp", "<cmd>AutolistCycleNext<cr>")
+
+      -- functions to recalculate list on edit
+      -- vim.keymap.set('n', '>>', '>><cmd>AutolistRecalculate<cr>')
+      -- vim.keymap.set('n', '<<', '<<<cmd>AutolistRecalculate<cr>')
+      -- vim.keymap.set('n', 'dd', 'dd<cmd>AutolistRecalculate<cr>')
+      -- vim.keymap.set('v', 'd', 'd<cmd>AutolistRecalculate<cr>')
+    end,
+  },
+
+  -- Generate and update table of contents list (TOC) for markdown ============
+  {
+    'hedyhli/markdown-toc.nvim',
+    ft = 'markdown',  -- Lazy load on markdown filetype
+    cmd = { 'Mtoc' }, -- Or, lazy load on "Mtoc" command
+    opts = {
+      toc_list = {
+        markers = '-',
+      },
+    },
+    keys = {
+      { '<leader>cc', '<Cmd>Mtoc<CR>', desc = 'Markdown table of [c]ontent' },
+    },
+  },
+
+  -- Follow links in markdown =================================================
   {
     'jghauser/follow-md-links.nvim',
     enabled = vim.fn.has 'mac' == 1,
@@ -48,16 +102,11 @@ return {
   },
 
   -- Configurable tools for markdown ==========================================
+  -- Replaced by 'gaoDean/autolist.nvim'
   {
     'tadmccorkle/markdown.nvim',
+    enabled = false,
     ft = 'markdown', -- or 'event = "VeryLazy"'
-    config = function()
-      require('markdown').setup {
-        mappings = {
-          link_add = '<leader>cl', -- (string|boolean) add link
-        },
-      }
-    end,
     opts = {
       on_attach = function(bufnr)
         local map = vim.keymap.set
