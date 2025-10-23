@@ -1,4 +1,12 @@
 return {
+  { -- Never have last line in the bottom of the screen =======================
+    'Aasim-A/scrollEOF.nvim',
+    -- produces scroll to the end in some markdown files
+    enabled = false,
+    event = { 'CursorMoved', 'WinScrolled' },
+    opts = {},
+  },
+
   { -- Update bind zone serial automatically ===================================
     'breard-r/vim-dnsserial',
   },
@@ -62,6 +70,19 @@ return {
         virtual_text = false,
       }
     end,
+  },
+
+  {
+    'hedyhli/outline.nvim',
+    lazy = true,
+    cmd = { 'Outline', 'OutlineOpen' },
+    keys = { -- Example mapping to toggle outline
+      { '<leader>o', '<cmd>Outline<CR>', desc = 'Toggle outline' },
+      { '|', '<cmd>Outline<CR>', desc = 'Toggle outline' },
+    },
+    opts = {
+      -- Your setup opts here
+    },
   },
 
   -- Surround selections, stylishly ===========================================
