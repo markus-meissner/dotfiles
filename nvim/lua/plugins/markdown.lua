@@ -68,6 +68,7 @@ return {
   -- Generate and update table of contents list (TOC) for markdown ============
   {
     'hedyhli/markdown-toc.nvim',
+    enabled = vim.fn.has 'mac' == 1,
     ft = 'markdown',  -- Lazy load on markdown filetype
     cmd = { 'Mtoc' }, -- Or, lazy load on "Mtoc" command
     opts = {

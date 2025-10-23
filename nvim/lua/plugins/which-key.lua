@@ -50,6 +50,7 @@ return {
       -- d will become debug
       -- { '<leader>d', group = '[D]ocument' },
       { '<leader>f', group = 'files' },
+      { '<leader>g', group = 'git' },
       { '<leader>s', group = 'search' },
       -- from LazyVim
       {
@@ -78,5 +79,6 @@ return {
       -- { "gx", desc = "Open with system app" },
       -- { "gq", desc = "Format current selection (line wrap etc.)", mode = { 'v' } },
     },
+    sort = { "icase" },
   },
 }
