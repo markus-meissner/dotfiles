@@ -1,6 +1,11 @@
-return { -- Autoformat
+-- Autoformat
+-- See also: null-ls.lua
+return {
   'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
+  -- 2025-10-17: Disabled autoformat on save, this is anoying with old python scripts
+  -- event = { 'BufWritePre' },
+  -- 2025-10-21: Seems to be the same as null-ls / none-ls
+  enabled = false,
   cmd = { 'ConformInfo' },
   keys = {
     {
