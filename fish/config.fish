@@ -7,8 +7,6 @@ if status is-interactive
     [ -d /opt/bin ] && set -gx PATH $PATH /opt/bin
     [ -d /opt/homebrew/bin ] && set -gx PATH $PATH /opt/homebrew/bin
 
-    [ -f /usr/bin/fdfind ] && alias fd=fdfind
-
     # https://fishshell.com/docs/current/tutorial.html#conditionals-if-else-switch
     if command -q less; and test "$(uname | string lower)" != openbsd
         # 2024-07-17: Removed -X as I don't know if we need it
