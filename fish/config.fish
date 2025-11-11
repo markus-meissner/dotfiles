@@ -21,7 +21,8 @@ if status is-interactive
 
     if command -q nvim
         alias v=nvim
-        set -gx NVIM_APPNAME nvim-lite
+        # To activate the full nvim configuration create ~/.cache/nvim/
+        [ -d ~/.cache/nvim ] || set -gx NVIM_APPNAME nvim-lite
         set -gx EDITOR $(which nvim)
     else if command -q vim
         alias v=vim
