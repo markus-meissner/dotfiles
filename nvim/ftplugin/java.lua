@@ -24,6 +24,7 @@ local config = {
     },
   },
   on_attach = function(client, bufnr)
+    -- Refactor / rename using vim.lsp.buf.rename: `grn`
     vim.keymap.set('n', '<leader>co', jdtls.organize_imports, { desc = 'Organize imports', buffer = bufnr })
     vim.keymap.set('n', '<leader>cv', jdtls.extract_variable_all, { desc = 'Extract variable', buffer = bufnr })
     vim.keymap.set('v', '<leader>cm', "<CMD>lua require('jdtls').extract_method(true)<CR>",

@@ -1,5 +1,6 @@
 return {
-  { -- Never have last line in the bottom of the screen =======================
+  -- Never have last line in the bottom of the screen =========================
+  {
     'Aasim-A/scrollEOF.nvim',
     -- produces scroll to the end in some markdown files
     enabled = false,
@@ -7,7 +8,8 @@ return {
     opts = {},
   },
 
-  { -- Update bind zone serial automatically ===================================
+  -- Update bind zone serial automatically ====================================
+  {
     'breard-r/vim-dnsserial',
   },
 
@@ -31,7 +33,8 @@ return {
   --   opts = {},
   -- },
 
-  { -- Save and restore cursor position
+  -- Save and restore cursor position =========================================
+  {
     'ethanholz/nvim-lastplace',
     config = function()
       require('nvim-lastplace').setup {}
@@ -41,6 +44,14 @@ return {
   -- navigate your code with search labels, enhanced character motions ========
   -- {
   --   'folke/flash.nvim',
+  -- },
+
+  -- { -- Rename
+  --   'filipdutescu/renamer.nvim',
+  --   requires = { {'nvim-lua/plenary.nvim'} },
+  --   keys = {
+  --     { '<leader>cr', '<cmd>lua require("renamer").rename()<cr>', desc = 'Rename' },
+  --   },
   -- },
 
   { -- Highlight todo, notes, etc in comments
@@ -72,6 +83,7 @@ return {
     end,
   },
 
+  -- A sidebar with a tree-like outline of symbols from your code =============
   {
     'hedyhli/outline.nvim',
     lazy = true,

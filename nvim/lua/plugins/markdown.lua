@@ -66,24 +66,28 @@ return {
   },
 
   -- Generate and update table of contents list (TOC) for markdown ============
-  {
-    'hedyhli/markdown-toc.nvim',
-    enabled = vim.fn.has 'mac' == 1,
-    ft = 'markdown',  -- Lazy load on markdown filetype
-    cmd = { 'Mtoc' }, -- Or, lazy load on "Mtoc" command
-    opts = {
-      toc_list = {
-        markers = '-',
-      },
-    },
-    keys = {
-      { '<leader>cc', '<Cmd>Mtoc<CR>', desc = 'Markdown table of [c]ontent' },
-    },
-  },
+  -- 2025-11-02: Replaced by 'hedyhli/outline.nvim'
+  -- {
+  --   'hedyhli/markdown-toc.nvim',
+  --   enabled = vim.fn.has 'mac' == 1,
+  --   ft = 'markdown',  -- Lazy load on markdown filetype
+  --   cmd = { 'Mtoc' }, -- Or, lazy load on "Mtoc" command
+  --   opts = {
+  --     toc_list = {
+  --       markers = '-',
+  --     },
+  --   },
+  --   keys = {
+  --     { '<leader>cc', '<Cmd>Mtoc<CR>', desc = 'Markdown table of [c]ontent' },
+  --   },
+  -- },
 
   -- Follow links in markdown =================================================
   {
     'jghauser/follow-md-links.nvim',
+    -- Filenames with spaces don't work although they should:
+    -- https://github.com/jghauser/follow-md-links.nvim/pull/19
+    -- https://github.com/jghauser/follow-md-links.nvim/issues/20
     enabled = vim.fn.has 'mac' == 1,
   },
 

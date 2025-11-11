@@ -37,6 +37,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Toggle line wrapping
 vim.keymap.set('n', '<leader>bw', '<cmd>set wrap!<CR>')
 
+-- Center cursor, thanks to ThePrimeagen
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- vim.keymap.set("n", "n", "nzzzv")
+-- vim.keymap.set("n", "N", "Nzzzv")
+
 -- Open file under cursor in default app, mainly for opening http links in browser
 -- There is the default binding gx which calls the deactivated netrw
 -- https://sbulav.github.io/vim/neovim-opening-github-repos/
@@ -44,9 +50,12 @@ local function url_repo()
   local cursorword = vim.fn.expand '<cfile>'
   -- https://onecompiler.com/lua/43aaypgqy
   if string.find(cursorword, '^[%a%d%-]*/[%a%d%-%.]*$') then
-    cursorword = 'https://github.com/' .. cursorword
+    return 'https://github.com/' .. cursorword
   end
-  return cursorword or ''
+  if string.find(cursorword, '^MIT%-%d*$') then
+    return os.getenv('MIT_IT') .. '/it/search?utf8=%E2%9C%93&scope=&q=' .. cursorword:match('^MIT%-(%d+)$')
+  end
+  return ''
 end
 
 local open_command = 'xdg-open'
