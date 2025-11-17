@@ -25,6 +25,10 @@
       create: true
       force: true
       path: nvim
+    ~/.config/nvim-lite:
+      create: true
+      force: true
+      path: nvim-lite
     ~/.config/tmux:
       create: true
       force: true
