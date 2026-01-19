@@ -251,25 +251,49 @@ return { -- LSP Plugins
           },
         }
       end
-      if vim.fn.executable 'npm' == 1 then
-        -- servers["pyright"] = {}
-        -- pylsp seems to be better than pyright, taken from https://github.com/hendrikmi/dotfiles/blob/main/nvim/lua/plugins/lsp.lua
-        servers['pylsp'] = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pyflakes = { enabled = false },
-                pycodestyle = { enabled = false },
-                autopep8 = { enabled = false },
-                yapf = { enabled = false },
-                mccabe = { enabled = false },
-                pylsp_mypy = { enabled = false },
-                pylsp_black = { enabled = false },
-                pylsp_isort = { enabled = false },
-              },
-            },
-          },
+      if vim.fn.executable 'ruff' == 1 then
+        -- We use ruff and pylsp:
+        -- - ruff is the fastes, but only supports linting and formatting
+        -- - pylsp seems to be better than pyright
+        -- - Use pylsp for rope integration later
+        --
+        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#pylsp
+        --
+        servers['ruff'] = {
+          -- config doesn't work, we should probably switch to vim.lsp.config
+          ruff = {
+            init_options = {
+              settings =  {
+                configuration = {
+                  lint = {
+                    ["select"] = {"E","F","N","W"}
+                  }
+                }
+              }
+            }
+          }
         }
+        -- 2025-12-09: It seems that the settings here are ignored as pycodestyle still pops up
+        -- servers['pylsp'] = {
+        --   settings = {
+        --     -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+        --     pylsp = {
+        --       plugins = {
+        --         autopep8 = { enabled = false },
+        --         mccabe = { enabled = false },
+        --         pycodestyle = { enabled = false },
+        --         pyflakes = { enabled = false },
+        --         pylsp_black = { enabled = false },
+        --         -- pylsp_isort = { enabled = false },
+        --         -- pylsp_mypy = { enabled = false },
+        --         yapf = { enabled = false },
+        --       },
+        --     },
+        --   },
+        -- }
+      end
+
+      if vim.fn.executable 'npm' == 1 then
         servers['yamlls'] = {}
       end
 

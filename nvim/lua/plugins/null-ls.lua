@@ -27,12 +27,13 @@ return {
         'shfmt',  -- A shell parser, formatter, and interpreter
       })
     end
-    if vim.fn.has 'macunix' == 1 then
-      vim.list_extend(formatters, {
-        -- ruff requires python3-venv on Debian. Add a matching check it needed.
-        'ruff', -- Python linter and code formatter
-      })
-    end
+    -- 2025-12-08: Switched to native lsp, see lsp.lua
+    -- if vim.fn.has 'macunix' == 1 then
+    --   vim.list_extend(formatters, {
+    --     -- ruff requires python3-venv on Debian. Add a matching check if needed.
+    --     'ruff', -- Python linter and code formatter
+    --   })
+    -- end
 
     require('mason-null-ls').setup {
       ensure_installed = formatters,

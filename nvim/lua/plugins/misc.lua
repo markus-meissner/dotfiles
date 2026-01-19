@@ -194,6 +194,8 @@ return {
 
   { -- automatic session management
     'rmagatti/auto-session',
+    -- 2025-12-10: I don't use it much
+    enabled = false;
     lazy = false,
 
     ---enables autocomplete for opts
