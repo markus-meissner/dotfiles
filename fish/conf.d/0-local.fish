@@ -1,5 +1,10 @@
 #echo 'LOAD "0-local.fish",8,1'
 
+# Theme - https://github.com/fish-shell/fish-shell/releases/tag/4.3.0
+# 3.7 has "Solarized Dark" and "Solarized Light", 4.3 only solarized
+# tail - use Light
+fish_config theme choose "$(fish_config theme | grep -i solarized | tail -n1)"
+
 # https://github.com/jethrokuan/z/issues/104
 set Z_DATA_DIR "$HOME/.local/share/z"
 set Z_DATA "$Z_DATA_DIR/data"
