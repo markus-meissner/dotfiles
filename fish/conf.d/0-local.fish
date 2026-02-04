@@ -4,6 +4,9 @@
 # 3.7 has "Solarized Dark" and "Solarized Light", 4.3 only solarized
 # tail - use Light
 fish_config theme choose "$(fish_config theme | grep -i solarized | tail -n1)"
+# Cleanup files migrated at 4.3
+rm -f ~/.config/fish/conf.d/fish_frozen_key_bindings.fish
+rm -f ~/.config/fish/conf.d/fish_frozen_theme.fish
 
 # https://github.com/jethrokuan/z/issues/104
 set Z_DATA_DIR "$HOME/.local/share/z"
@@ -30,4 +33,3 @@ set -g fish_color_cwd blue
 # https://github.com/acomagu/fish-async-prompt
 # We want the prompt_pwd to be instant, so only make the vcs prompt async
 set async_prompt_functions fish_vcs_prompt
-
