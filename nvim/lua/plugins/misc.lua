@@ -114,7 +114,7 @@ return {
   -- https://github.com/kylechui/nvim-surround/blob/main/doc/nvim-surround.txt
   {
     'kylechui/nvim-surround',
-    -- version = '^3.0.0', -- Use for stability; omit to use `main` branch for the latest features
+    version = '^3.1.8', -- Use for stability; omit to use `main` branch for the latest features
     event = 'VeryLazy',
     config = function()
       require('nvim-surround').setup {
@@ -194,15 +194,16 @@ return {
 
   { -- automatic session management
     'rmagatti/auto-session',
-    -- 2025-12-10: I don't use it much
-    enabled = false;
+    enabled = vim.fn.has 'mac' == 1,
     lazy = false,
 
     ---enables autocomplete for opts
     ---@module "auto-session"
     ---@type AutoSession.Config
     opts = {
-      allowed_dirs = { '~/dev/*', '~/Desktop/*' },
+      -- https://github.com/rmagatti/auto-session#-commands
+      auto_create = false,
+      -- allowed_dirs = { '~/dev/*', '~/Desktop/*' },
       -- suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
       -- log_level = 'debug',
     },
