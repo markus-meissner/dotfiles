@@ -50,6 +50,8 @@ if status is-interactive
         source ~/.config/fish/config.fish-local
     end
 
+    set -g fish_key_bindings fish_vi_key_bindings
+
     # FreeBSD has /home linked to /usr/home, this leads to
     # a prompt showing /usr/home/user instead of ~
     if test $PWD != $HOME -a (readlink -f $HOME) = $PWD
