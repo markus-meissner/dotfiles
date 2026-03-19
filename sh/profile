@@ -1,0 +1,10 @@
+# https://unix.stackexchange.com/a/176331
+function setenv() { export "$1=$2"; }
+. ~/.env
+
+[ -d ~/.cache/nvim ] || export NVIM_APPNAME=nvim-lite
+[ -d ~/.profile-local ] || . ~/.profile-local
+
+# FreeBSD has /home linked to /usr/home, this leads to a prompt showing
+# /usr/home/user instead of ~
+if [ "$PWD" != "$HOME" ] && [ "$PWD" -ef "$HOME" ] ; then cd ; fi

@@ -37,6 +37,10 @@
     ~/.vim/autoload/togglebg.vim:
       path: vim/autoload/togglebg.vim
       create: true
+    ~/.profile:
+      path: sh/profile
+      create: true
+      force: true
     ~/.vim/bitmaps/togglebg.png:
       path: vim/bitmaps/togglebg.png
       create: true
