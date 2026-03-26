@@ -32,10 +32,15 @@ if status is-interactive
         set -gx EDITOR $(which vi)
     end
 
+    if command -q rg
+        alias rg="rg --smart-case"
+    else
+        abbr -a rg 'grep'
+    end
+
     abbr -a --set-cursor du-hs 'sudo du -hs %* | sort -h'
     abbr -a fd 'fd -u'
     abbr -a ff 'find . -name'
-    abbr -a rg 'rg --smart-case'
     abbr -a tmuxat 'tmux attach || tmux new'
 
     # https://unix.stackexchange.com/a/176331
