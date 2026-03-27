@@ -33,6 +33,8 @@ if status is-interactive
     end
 
     if command -q rg
+        # Using an alias looks much cleaner but has one caveat:
+        # It doesn't work with sudo
         alias rg="rg --smart-case"
     else
         abbr -a rg 'grep'
