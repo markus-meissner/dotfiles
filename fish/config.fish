@@ -32,11 +32,9 @@ if status is-interactive
         set -gx EDITOR $(which vi)
     end
 
-    if command -q rg
-        # Using an alias looks much cleaner but has one caveat:
-        # It doesn't work with sudo
-        alias rg="rg --smart-case"
-    else
+    if not command -q rg
+        # 2026-03-29: Stopped using --smart-case
+        # alias rg="rg --smart-case"
         abbr -a rg 'grep'
     end
 
