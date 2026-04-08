@@ -11,7 +11,7 @@ require('options')
 
 require('keymaps')
 
--- require("config.lazy")
+-- https://echasnovski.com/blog/2026-03-13-a-guide-to-vim-pack
 if vim.fn.has 'nvim-0.12' == 1 then
   vim.pack.add({
     "https://github.com/gbprod/cutlass.nvim",
