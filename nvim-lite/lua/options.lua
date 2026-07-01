@@ -16,9 +16,10 @@ vim.opt.number = true
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
+-- Leave mouse mode on macos
 if vim.fn.has 'mac' == 0 then
-  vim.opt.mouse = ''
+  -- Set mouse to raw / terminal anywhere else [MIT-20519]
+  vim.opt.mouse = 'r'
 end
 
 -- Don't show the mode, since it's already in the status line
