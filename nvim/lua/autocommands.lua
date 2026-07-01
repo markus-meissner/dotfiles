@@ -44,3 +44,25 @@ autocmd('BufWinEnter', {
     end
   end,
 })
+
+-- Activate folding if LSP supports it
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client then return end
+    if client:supports_method('textDocument/foldingRange') then
+      local win = vim.api.nvim_get_current_win()
+      vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+      vim.wo[win][0].foldlevel = 99
+    end
+  end,
+})
+
+-- Fold all imports
+vim.api.nvim_create_autocmd('LspNotify', {
+  callback = function(ev)
+    if ev.data.method == 'textDocument/didOpen' then
+      vim.lsp.foldclose('imports', vim.fn.bufwinid(ev.buf))
+    end
+  end,
+})

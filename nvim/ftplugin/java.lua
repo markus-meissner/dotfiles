@@ -24,6 +24,10 @@ local config = {
     },
   },
   on_attach = function(client, bufnr)
+    -- 2026-06-30: Words like `implement` are red when using jdtls.
+    -- Deactivate semantic highlighting, use treesitter highlight
+    client.server_capabilities.semanticTokensProvider = nil
+
     -- Refactor / rename using vim.lsp.buf.rename: `grn`
     vim.keymap.set('n', '<leader>co', jdtls.organize_imports, { desc = 'Organize imports', buffer = bufnr })
     vim.keymap.set('n', '<leader>cv', jdtls.extract_variable_all, { desc = 'Extract variable', buffer = bufnr })
