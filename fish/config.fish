@@ -62,4 +62,12 @@ if status is-interactive
     if test $PWD != $HOME -a (readlink -f $HOME) = $PWD
         cd
     end
+
+    switch (uname | string lower)
+        case freebsd
+            set -gx ETC_PREFIX /usr/local
+        # case '*'
+        #     echo -ns '?'
+    end
+
 end
