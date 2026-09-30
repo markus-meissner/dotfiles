@@ -45,6 +45,7 @@ if status is-interactive
 
     # https://unix.stackexchange.com/a/176331
     function setenv
+        echo "~/.env: Setting $argv"
         set -gx $argv
     end
     if test -e ~/.env
