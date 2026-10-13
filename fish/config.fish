@@ -58,6 +58,13 @@ if status is-interactive
 
     set -g fish_key_bindings fish_vi_key_bindings
 
+    if test "$version" = 4.9.1
+        # Work around fish 4.9.1 bug #12973: Option-composed @ arrives as alt-l
+        function fish_user_key_bindings
+            bind -M insert alt-l 'commandline -i @'
+        end
+    end
+
     # FreeBSD has /home linked to /usr/home, this leads to
     # a prompt showing /usr/home/user instead of ~
     if test $PWD != $HOME -a (readlink -f $HOME) = $PWD
