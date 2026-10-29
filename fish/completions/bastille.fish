@@ -18,8 +18,9 @@ complete -c bastille -f -n '__fish_use_subcommand' -a 'import' -d 'Import a jail
 complete -c bastille -f -n '__fish_use_subcommand' -a 'limits' -d 'Apply resource limits to jail'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'list' -d 'List jails'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'pkg' -d 'Manage packages in jail'
-complete -c bastille -f -n '__fish_use_subcommand' -a 'restart' -d 'Restart a jail'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'rdr' -d 'Redirect host port to jail port'
+complete -c bastille -f -n '__fish_use_subcommand' -a 'rename' -d 'Rename a jail'
+complete -c bastille -f -n '__fish_use_subcommand' -a 'restart' -d 'Restart a jail'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'service' -d 'Manage services in jail'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'start' -d 'Start a jail'
 complete -c bastille -f -n '__fish_use_subcommand' -a 'stop' -d 'Stop a jail'
@@ -80,7 +81,7 @@ complete -c bastille -f -n '__fish_seen_subcommand_from pkg' -a 'install remove 
 complete -c bastille -f -n '__fish_seen_subcommand_from template' -a '(__bastille_templates)' -d 'Template'
 
 # Complete jail names for commands that need them
-complete -c bastille -f -n '__fish_seen_subcommand_from clone cmd config console destroy edit export htop limits pkg restart rdr start stop template top update upgrade' -a '(__bastille_jails)' -d 'Jail'
+complete -c bastille -f -n '__fish_seen_subcommand_from clone cmd config console destroy edit export htop limits pkg rename restart rdr start stop template top update upgrade' -a '(__bastille_jails)' -d 'Jail'
 
 # Global options
 complete -c bastille -f -s h -l help -d 'Show help'
