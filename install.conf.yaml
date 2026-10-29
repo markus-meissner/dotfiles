@@ -13,6 +13,9 @@
     -
       description: Creating ~/.hushlogin
       command: test "$(uname -s)" = "FreeBSD" && test ! -f ~/.hushlogin && touch ~/.hushlogin || true
+    -
+      description: Securing ~/.env
+      command: test -f ~/.env && chmod 600 ~/.env
     - [ ./install-fzf, Installing fzf (fish only) ]
 
 - link:
