@@ -46,7 +46,7 @@ if status is-interactive
 
     # https://unix.stackexchange.com/a/176331
     function setenv
-        if string match -qi '*KEY*' $argv[1]
+        if string match -qr 'KEY|PASSWORD|TOKEN' $argv[1]
             echo "~/.env: Setting $argv[1]"
         else
             echo "~/.env: Setting $argv[1]=$argv[2]"
