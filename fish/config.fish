@@ -33,9 +33,10 @@ if status is-interactive
     end
 
     if not command -q rg
-        # 2026-03-29: Stopped using --smart-case
-        # alias rg="rg --smart-case"
         abbr -a rg 'grep'
+    else
+        alias rg="rg --no-line-number"
+        # abbr -a rg "rg --no-line-number"
     end
 
     abbr -a --set-cursor du-hs 'sudo du -hs %* | sort -h'
